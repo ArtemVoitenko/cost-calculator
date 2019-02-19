@@ -1,0 +1,8 @@
+.input-panel {
+  &__calendar {
+    display: none;
+  }
+  &__calendar.active {
+    display: block;
+  }
+}
