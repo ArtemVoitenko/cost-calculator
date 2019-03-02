@@ -2,9 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import CostListItem from "../cost-list-item";
 import "./cost-list.scss";
-import { deleteItem } from "../../actions";
+import { deleteItem, initializeItemsList } from "../../actions";
 
 class CostList extends Component {
+  componentDidMount() {
+    const data = JSON.parse(localStorage.getItem("items"));
+    this.props.initializeItemsList(data);
+  }
   onRemove = id => {
     const currentData = JSON.parse(localStorage.getItem("items"));
     const elementToRemove = currentData.findIndex(item => {
@@ -17,9 +21,8 @@ class CostList extends Component {
     localStorage.setItem("items", JSON.stringify(newData));
     this.props.deleteItem(JSON.parse(localStorage.getItem("items")));
   };
-  // onEdit() => {}
   renderList = () => {
-    const listData = this.props.items.data;
+    const listData = this.props.items;
     console.log(listData);
     if (listData) {
       return listData.map(item => {
@@ -40,15 +43,18 @@ class CostList extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ data }) => {
   return {
-    items: state
+    items: data
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     deleteItem: itemList => {
       dispatch(deleteItem(itemList));
+    },
+    initializeItemsList: data => {
+      dispatch(initializeItemsList(data));
     }
   };
 };

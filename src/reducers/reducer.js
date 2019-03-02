@@ -1,9 +1,8 @@
 const initialState = {
   test: false,
   error: false,
-  data: JSON.parse(localStorage.getItem("items"))
+  data: []
 };
-console.log(initialState);
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "TEST_CASE": {
@@ -24,6 +23,12 @@ const reducer = (state = initialState, action) => {
       };
     }
     case "REMOVE_ITEM": {
+      return {
+        ...state,
+        data: action.payload
+      };
+    }
+    case "INITIALIZE_ITEMS_LIST": {
       return {
         ...state,
         data: action.payload

@@ -54,9 +54,25 @@ class InputGroup extends Component {
         .substr(2, 9)
     );
   };
-  applyChange = () => {
-    console.log("Success");
+  applyChange = async () => {
     this.props.applyChange();
+    const data = this.state;
+    const prevData = await JSON.parse(localStorage.getItem("items"));
+
+    const editedItemIdx = await prevData.findIndex(item => {
+      return item.actionId === this.state.actionId;
+    });
+
+    await localStorage.setItem(
+      "items",
+      JSON.stringify([
+        ...prevData.slice(0, editedItemIdx),
+        data,
+        ...prevData.slice(editedItemIdx + 1)
+      ])
+    );
+    const dataToStore = JSON.parse(localStorage.getItem("items"));
+    this.props.addItem(dataToStore);
   };
   onSubmit = async () => {
     await this.setState({
@@ -71,10 +87,15 @@ class InputGroup extends Component {
     }
     const dataToStore = JSON.parse(localStorage.getItem("items"));
     this.props.addItem(dataToStore);
+    this.setState({
+      actionName: "",
+      actionSum: "",
+      actionType: "consumption",
+      actionDate: ""
+    });
   };
 
   render() {
-    console.log(this.state);
     const {
       calendarVisibility,
       actionName,
@@ -83,9 +104,8 @@ class InputGroup extends Component {
       actionDate
     } = this.state;
     const isVisible = calendarVisibility ? "active" : "";
-    console.log(this.props.view);
     const method =
-      this.props.view === "edit" ? this.props.applyChange : this.onSubmit;
+      this.props.view === "edit" ? this.applyChange : this.onSubmit;
     return (
       <div className="input-panel">
         <form action="#" className="input-panel__form">

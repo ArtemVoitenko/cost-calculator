@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import CostList from "../cost-list";
 import "./normilize.scss";
 import ItemCreator from "../item-creator";
+import Totals from "../totals";
 
 export default class App extends Component {
   render() {
@@ -14,6 +15,7 @@ export default class App extends Component {
           </a>
           <ItemCreator />
           <CostList />
+          <Totals />
         </header>
       </div>
     );

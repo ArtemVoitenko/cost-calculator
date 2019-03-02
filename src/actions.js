@@ -15,3 +15,9 @@ export const deleteItem = itemList => {
     payload: itemList
   };
 };
+export const initializeItemsList = data => {
+  return {
+    type: "INITIALIZE_ITEMS_LIST",
+    payload: data
+  };
+};
