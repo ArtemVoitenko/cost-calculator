@@ -136,13 +136,14 @@ class InputGroup extends Component {
             onChange={this.onTypeChange}
             value={actionType}
           >
-            <option defaultValue="consumption">consumption</option>
+            <option value="consumption">consumption</option>
             <option value="income">income</option>
           </select>
           <div className="input-panel__calendar-wrapper">
             <button
               className="btn btn-primary input-panel__button"
               onClick={this.showCalendar}
+              type="button"
             >
               {actionDate}
             </button>

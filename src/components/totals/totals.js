@@ -37,7 +37,7 @@ class Totals extends Component {
     this.calculateTotals();
   }
   componentDidUpdate(prevProps) {
-    if (this.props.items !== prevProps.items) {
+    if (this.props.data !== prevProps.data) {
       this.calculateTotals();
     }
   }
