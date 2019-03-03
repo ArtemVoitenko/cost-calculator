@@ -4,4 +4,13 @@
   &__item {
     display: flex;
   }
+  &__sum {
+    font-weight: bold;
+    &--consumption {
+      color: red;
+    }
+    &--income {
+      color: green;
+    }
+  }
 }

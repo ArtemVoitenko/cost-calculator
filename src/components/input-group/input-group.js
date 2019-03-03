@@ -21,7 +21,7 @@ class InputGroup extends Component {
   };
   state = {
     ...this.props.state,
-    // dateMilliseconds: new Date().getTime(),
+    actionType: "consumption",
     calendarVisibility: false
   };
   onNameInput = e => {
@@ -102,7 +102,6 @@ class InputGroup extends Component {
   };
 
   render() {
-    console.log(this.props.items);
     const {
       calendarVisibility,
       actionName,
@@ -136,7 +135,7 @@ class InputGroup extends Component {
             onChange={this.onTypeChange}
             value={actionType}
           >
-            <option value="consumption">consumption</option>
+            <option defaultValue="consumption">consumption</option>
             <option value="income">income</option>
           </select>
           <div className="input-panel__calendar-wrapper">

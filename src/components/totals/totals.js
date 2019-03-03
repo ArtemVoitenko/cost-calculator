@@ -10,7 +10,6 @@ class Totals extends Component {
 
   calculateTotals = () => {
     const { data } = this.props;
-    console.log(`${data} my data`);
     let minus = 0;
     let plus = 0;
     let total = 0;
@@ -19,19 +18,19 @@ class Totals extends Component {
         const item = data[i];
         if (item.actionType === "consumption") {
           minus += parseFloat(item.actionSum);
+          total -= parseFloat(item.actionSum);
         } else {
           plus += parseFloat(item.actionSum);
+          total += parseFloat(item.actionSum);
         }
-        total += parseFloat(item.actionSum);
       }
     }
     this.setState({
-      consumptionTotals: minus,
+      consumptionTotals: -minus,
       incomeTotals: plus,
       totalCostSum: total
     });
   };
-  // this.data.forEach(item => {
 
   componentDidMount() {
     this.calculateTotals();

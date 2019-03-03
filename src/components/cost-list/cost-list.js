@@ -6,9 +6,9 @@ import { deleteItem, initializeItemsList } from "../../actions";
 
 class CostList extends Component {
   componentDidMount() {
-    this.initialize();
+    this.initializeData();
   }
-  initialize() {
+  initializeData() {
     const data = JSON.parse(localStorage.getItem("items"));
     this.props.initializeItemsList(data);
   }
@@ -50,6 +50,7 @@ const mapStateToProps = ({ dataToShow }) => {
     items: dataToShow
   };
 };
+
 const mapDispatchToProps = dispatch => {
   return {
     deleteItem: itemList => {
@@ -60,6 +61,7 @@ const mapDispatchToProps = dispatch => {
     }
   };
 };
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps

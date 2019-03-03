@@ -12,7 +12,9 @@ const ListItemView = ({
   return (
     <li id={actionId} className="cost-list__item">
       <div className="cost-list__name">{actionName}</div>
-      <div className="cost-list__sum">{actionSum}</div>
+      <div className={`cost-list__sum cost-list__sum--${actionType}`}>
+        {actionSum}
+      </div>
       <div className="cost-list__date">{actionDate}</div>
       <div className="cost-list__type">{actionType}</div>
       <div className="cost-list__buttons">

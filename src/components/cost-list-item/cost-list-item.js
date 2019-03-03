@@ -6,20 +6,12 @@ export default class CostListItem extends Component {
   state = {
     editMode: false
   };
-  costType = () => {
-    if (this.props.actionType === "consumption") {
-      return "cost--consumption";
-    } else {
-      return "";
-    }
-  };
   onEditClick = () => {
     this.setState({
       editMode: true
     });
   };
   applyChange = () => {
-    console.log("applied");
     this.setState({
       editMode: false
     });
