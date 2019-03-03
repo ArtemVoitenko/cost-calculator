@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import ListItemView from "./listItemView";
 import EditItemView from "./editItemView";
 export default class CostListItem extends Component {

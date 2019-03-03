@@ -5,6 +5,7 @@ import "./normilize.scss";
 import ItemCreator from "../item-creator";
 import Totals from "../totals";
 import PeriodSortPicker from "../period-sort-picker./period-sort-picker";
+import SumSortPicker from "../sum-sort-picker";
 
 export default class App extends Component {
   render() {
@@ -18,6 +19,7 @@ export default class App extends Component {
           <CostList />
           <Totals />
           <PeriodSortPicker />
+          <SumSortPicker />
         </header>
       </div>
     );
