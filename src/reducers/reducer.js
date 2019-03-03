@@ -1,7 +1,8 @@
 const initialState = {
   test: false,
   error: false,
-  data: []
+  data: [],
+  dataToShow: []
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -25,13 +26,21 @@ const reducer = (state = initialState, action) => {
     case "REMOVE_ITEM": {
       return {
         ...state,
-        data: action.payload
+        data: action.payload,
+        dataToShow: action.payload
       };
     }
     case "INITIALIZE_ITEMS_LIST": {
       return {
         ...state,
-        data: action.payload
+        data: action.payload,
+        dataToShow: action.payload
+      };
+    }
+    case "CHANGE_ITEMS_TO_SHOW": {
+      return {
+        ...state,
+        dataToShow: action.payload
       };
     }
     default: {

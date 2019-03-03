@@ -6,6 +6,9 @@ import { deleteItem, initializeItemsList } from "../../actions";
 
 class CostList extends Component {
   componentDidMount() {
+    this.initialize();
+  }
+  initialize() {
     const data = JSON.parse(localStorage.getItem("items"));
     this.props.initializeItemsList(data);
   }
@@ -23,7 +26,6 @@ class CostList extends Component {
   };
   renderList = () => {
     const listData = this.props.items;
-    console.log(listData);
     if (listData) {
       return listData.map(item => {
         return (
@@ -43,9 +45,9 @@ class CostList extends Component {
   }
 }
 
-const mapStateToProps = ({ data }) => {
+const mapStateToProps = ({ dataToShow }) => {
   return {
-    items: data
+    items: dataToShow
   };
 };
 const mapDispatchToProps = dispatch => {

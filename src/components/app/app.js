@@ -4,6 +4,7 @@ import CostList from "../cost-list";
 import "./normilize.scss";
 import ItemCreator from "../item-creator";
 import Totals from "../totals";
+import PeriodSortPicker from "../period-sort-picker./period-sort-picker";
 
 export default class App extends Component {
   render() {
@@ -16,6 +17,7 @@ export default class App extends Component {
           <ItemCreator />
           <CostList />
           <Totals />
+          <PeriodSortPicker />
         </header>
       </div>
     );

@@ -9,20 +9,22 @@ class Totals extends Component {
   };
 
   calculateTotals = () => {
-    const { data } = this.props.items;
+    const { data } = this.props;
+    console.log(`${data} my data`);
     let minus = 0;
     let plus = 0;
     let total = 0;
-    for (let i = 0; i < data.length; i++) {
-      const item = data[i];
-      if (item.actionType === "consumption") {
-        minus += parseFloat(item.actionSum);
-      } else {
-        plus += parseFloat(item.actionSum);
+    if (data.length !== 0) {
+      for (let i = 0; i < data.length; i++) {
+        const item = data[i];
+        if (item.actionType === "consumption") {
+          minus += parseFloat(item.actionSum);
+        } else {
+          plus += parseFloat(item.actionSum);
+        }
+        total += parseFloat(item.actionSum);
       }
-      total += parseFloat(item.actionSum);
     }
-    console.log(minus);
     this.setState({
       consumptionTotals: minus,
       incomeTotals: plus,
@@ -37,12 +39,9 @@ class Totals extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.items !== prevProps.items) {
       this.calculateTotals();
-      console.log("Hello");
     }
   }
   render() {
-    console.log(this.data);
-
     const { consumptionTotals, incomeTotals, totalCostSum } = this.state;
     return (
       <div className="totals">
@@ -54,9 +53,9 @@ class Totals extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ dataToShow }) => {
   return {
-    items: state
+    data: dataToShow
   };
 };
 export default connect(mapStateToProps)(Totals);

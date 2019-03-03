@@ -21,3 +21,9 @@ export const initializeItemsList = data => {
     payload: data
   };
 };
+export const changeItemsToShow = data => {
+  return {
+    type: "CHANGE_ITEMS_TO_SHOW",
+    payload: data
+  };
+};

@@ -19,7 +19,11 @@ class InputGroup extends Component {
     const year = date.getFullYear();
     return `${day()}.${month()}.${year}`;
   };
-  state = { ...this.props.state, calendarVisibility: false };
+  state = {
+    ...this.props.state,
+    // dateMilliseconds: new Date().getTime(),
+    calendarVisibility: false
+  };
   onNameInput = e => {
     const actionName = e.target.value;
     this.setState({
@@ -43,6 +47,7 @@ class InputGroup extends Component {
     var convertedData = this.convertDate(date);
     this.setState({
       actionDate: convertedData,
+      dateMilliseconds: date.getTime(),
       calendarVisibility: false
     });
   };
@@ -91,11 +96,13 @@ class InputGroup extends Component {
       actionName: "",
       actionSum: "",
       actionType: "consumption",
-      actionDate: ""
+      actionDate: "",
+      dateMilliseconds: new Date().getTime()
     });
   };
 
   render() {
+    console.log(this.props.items);
     const {
       calendarVisibility,
       actionName,
