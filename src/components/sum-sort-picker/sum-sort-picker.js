@@ -6,40 +6,33 @@ class SumSortPicker extends Component {
   state = {
     sumSortType: ""
   };
+  componentDidMount() {
+    // this.onSortTypeChange();
+  }
   onIncreaseChosen = () => {
-    this.setState({ sumSortType: "increase" });
+    const { items, changeShownItems } = this.props;
+    const unsortedList = [...items];
+    const listByIncrease = unsortedList.sort((a, b) => {
+      const first = parseFloat(a.actionSum);
+      const second = parseFloat(b.actionSum);
+      if (first < second) return -1;
+      if (first > second) return 1;
+    });
+
+    changeShownItems(listByIncrease);
   };
   onDecreaseChosen = () => {
-    this.setState({ sumSortType: "decrease" });
-  };
-  componentDidUpdate(prevState) {
-    if (this.state.sumSortType !== prevState.sumSortType) {
-      this.onSortTypeChange();
-      console.log(this.props.items);
-    }
-  }
-  onSortTypeChange = () => {
     const { items, changeShownItems } = this.props;
-    if (this.state.sumSortType === "increase") {
-      const listByIncrease = items.sort((a, b) => {
-        const first = a.actionSum;
-        const second = b.actionSum;
-        if (first < second) return -1;
-        if (first > second) return 1;
-      });
-
-      changeShownItems(listByIncrease);
-    } else if (this.state.sumSortType === "decrease") {
-      const listByDecrease = items.sort((a, b) => {
-        const first = a.actionSum;
-        const second = b.actionSum;
-        if (first < second) return 1;
-        if (first > second) return -1;
-      });
-      changeShownItems(listByDecrease);
-    } else {
-      changeShownItems(items);
-    }
+    const unsortedList = [...items];
+    const listByDecrease = unsortedList.sort((a, b) => {
+      const first = parseFloat(a.actionSum);
+      const second = parseFloat(b.actionSum);
+      console.log(`first:${first}
+      second: ${second}`);
+      if (first < second) return 1;
+      if (first > second) return -1;
+    });
+    changeShownItems(listByDecrease);
   };
   render() {
     return (

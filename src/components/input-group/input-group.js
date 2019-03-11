@@ -78,6 +78,7 @@ class InputGroup extends Component {
     );
     const dataToStore = JSON.parse(localStorage.getItem("items"));
     this.props.addItem(dataToStore);
+    console.log("edit edit");
   };
   onSubmit = async () => {
     await this.setState({

@@ -38,6 +38,7 @@ const reducer = (state = initialState, action) => {
       };
     }
     case "CHANGE_ITEMS_TO_SHOW": {
+      console.log("data change");
       return {
         ...state,
         dataToShow: action.payload

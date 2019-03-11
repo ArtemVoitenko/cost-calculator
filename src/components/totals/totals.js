@@ -13,6 +13,7 @@ class Totals extends Component {
     let minus = 0;
     let plus = 0;
     let total = 0;
+    console.log(data);
     if (data.length !== 0) {
       for (let i = 0; i < data.length; i++) {
         const item = data[i];
