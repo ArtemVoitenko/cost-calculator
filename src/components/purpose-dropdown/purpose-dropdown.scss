@@ -1,0 +1,10 @@
+.purpose-dropdown {
+  list-style-type: none;
+  &__item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+}

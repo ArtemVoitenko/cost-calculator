@@ -1,0 +1,43 @@
+body {
+  min-height: 100%;
+  background-image: linear-gradient(
+    to right bottom,
+    #002936,
+    #00323d,
+    #003b42,
+    #044546,
+    #134e48
+  );
+  color: white;
+}
+.purpose-image {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  background-size: cover;
+  border-radius: 50%;
+  &--home {
+    background-image: url(./image/home.jpg);
+  }
+  &--food {
+    background-image: url(./image/food.jpg);
+  }
+  &--sport {
+    background-image: url(./image/sport.jpg);
+  }
+  &--transport {
+    background-image: url(./image/transport.jpg);
+  }
+  &--shopping {
+    background-image: url(./image/shopping.jpg);
+  }
+  &--family {
+    background-image: url(./image/family.jpg);
+  }
+  &--rest {
+    background-image: url(./image/rest.jpg);
+  }
+  &--other {
+    background-image: url(./image/other.jpg);
+  }
+}

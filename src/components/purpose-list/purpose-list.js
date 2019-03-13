@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import "./purpose-list.scss";
+import PurposeDropdown from "../purpose-dropdown";
 export default class PusposeList extends Component {
   state = {
     purpose: "other",
@@ -16,66 +17,21 @@ export default class PusposeList extends Component {
       purpose: purposeValue,
       listVisibility: false
     });
-    console.log(purposeValue);
     this.props.onPurposeChoose(purposeValue);
   };
 
   render() {
+    const purposeDropdown = this.state.listVisibility ? (
+      <PurposeDropdown onPurposeSelect={this.onPurposeSelect} />
+    ) : null;
     return (
       <div className="purpose">
-        <button onClick={this.onOpenClick} className="purpose__open">
-          open
+        <button onClick={this.onOpenClick} className="purpose__open ">
+          <div
+            className={`purpose-image purpose-image--${this.state.purpose}`}
+          />
         </button>
-        <ul onClick={this.onPurposeSelect} className="purpose-select">
-          <li data-value="home" className="purpose-select__item">
-            <div className="purpose-select__img-wrapper">
-              <img src="#" alt="" className="purpose-select__img" />
-            </div>
-            Home
-          </li>
-          <li data-value="food" className="purpose-select__item">
-            <div className="purpose-select__img-wrapper">
-              <img src="#" alt="" className="purpose-select__img" />
-            </div>
-            Eat
-          </li>
-          <li data-value="sport" className="purpose-select__item">
-            <div className="purpose-select__img-wrapper">
-              <img src="#" alt="" className="purpose-select__img" />
-            </div>
-            Sport
-          </li>
-          <li data-value="transport" className="purpose-select__item">
-            <div className="purpose-select__img-wrapper">
-              <img src="#" alt="" className="purpose-select__img" />
-            </div>
-            Transport
-          </li>
-          <li data-value="cloth" className="purpose-select__item">
-            <div className="purpose-select__img-wrapper">
-              <img src="#" alt="" className="purpose-select__img" />
-            </div>
-            Cloth
-          </li>
-          <li data-value="family" className="purpose-select__item">
-            <div className="purpose-select__img-wrapper">
-              <img src="#" alt="" className="purpose-select__img" />
-            </div>
-            Family
-          </li>
-          <li data-value="rest" className="purpose-select__item">
-            <div className="purpose-select__img-wrapper">
-              <img src="" alt="" className="purpose-select__img" />
-            </div>
-            Rest
-          </li>
-          <li data-value="other" className="purpose-select__item">
-            <div className="purpose-select__img-wrapper">
-              <img src="" alt="" className="purpose-select__img" />
-            </div>
-            Other
-          </li>
-        </ul>
+        {purposeDropdown}
       </div>
     );
   }

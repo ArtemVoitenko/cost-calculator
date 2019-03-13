@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import CostList from "../cost-list";
+import "./app.scss";
 import "./normilize.scss";
 import ItemCreator from "../item-creator";
 import Totals from "../totals";
@@ -10,19 +11,17 @@ import SumSortPicker from "../sum-sort-picker";
 export default class App extends Component {
   render() {
     return (
-      <div className="container">
-        <header className="header">
-          <a href="#" className="logo">
-            MoneyGuard
-          </a>
-          <ItemCreator />
-          <CostList />
+      <header className="header">
+        <a href="#" className="logo">
+          MoneyGuard
+        </a>
+        <ItemCreator />
+        <CostList />
 
-          <PeriodSortPicker />
-          <SumSortPicker />
-          <Totals />
-        </header>
-      </div>
+        <PeriodSortPicker />
+        <SumSortPicker />
+        <Totals />
+      </header>
     );
   }
 }
