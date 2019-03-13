@@ -17,9 +17,10 @@ export default class App extends Component {
           </a>
           <ItemCreator />
           <CostList />
-          <Totals />
+
           <PeriodSortPicker />
           <SumSortPicker />
+          <Totals />
         </header>
       </div>
     );

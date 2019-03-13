@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Calendar from "react-calendar";
 import { addItem } from "../../actions";
 import { connect } from "react-redux";
+import PurposeList from "../purpose-list";
+
 class InputGroup extends Component {
   convertDate = date => {
     const day = () => {
@@ -22,6 +24,7 @@ class InputGroup extends Component {
   state = {
     ...this.props.state,
     actionType: "consumption",
+    actionPurpose: "other",
     calendarVisibility: false
   };
   onNameInput = e => {
@@ -50,6 +53,10 @@ class InputGroup extends Component {
       dateMilliseconds: date.getTime(),
       calendarVisibility: false
     });
+  };
+  onPurposeChoose = async purpose => {
+    await this.setState({ actionPurpose: purpose });
+    console.log(`purpose: ${this.state.actionPurpose}`);
   };
   generateId = () => {
     return (
@@ -151,7 +158,7 @@ class InputGroup extends Component {
               <Calendar onChange={this.onCalendarPick} />
             </div>
           </div>
-
+          <PurposeList onPurposeChoose={this.onPurposeChoose} />
           <button
             className="input-panel__submit"
             type="button"

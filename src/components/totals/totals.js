@@ -14,7 +14,7 @@ class Totals extends Component {
     let plus = 0;
     let total = 0;
     console.log(data);
-    if (data.length !== 0) {
+    if (data) {
       for (let i = 0; i < data.length; i++) {
         const item = data[i];
         if (item.actionType === "consumption") {
