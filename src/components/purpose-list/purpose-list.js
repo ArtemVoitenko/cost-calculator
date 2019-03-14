@@ -11,8 +11,7 @@ export default class PusposeList extends Component {
       listVisibility: !this.state.listVisibility
     });
   };
-  onPurposeSelect = e => {
-    let purposeValue = e.target.dataset.value;
+  onPurposeSelect = purposeValue => {
     this.setState({
       purpose: purposeValue,
       listVisibility: false
@@ -26,7 +25,11 @@ export default class PusposeList extends Component {
     ) : null;
     return (
       <div className="purpose">
-        <button onClick={this.onOpenClick} className="purpose__open ">
+        <button
+          type="button"
+          onClick={this.onOpenClick}
+          className="purpose__open "
+        >
           <div
             className={`purpose-image purpose-image--${this.state.purpose}`}
           />

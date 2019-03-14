@@ -4,7 +4,8 @@ const PurposeDropdown = ({ onPurposeSelect }) => {
   return (
     <ul
       onClick={e => {
-        onPurposeSelect(e);
+        let purposeValue = e.target.dataset.value;
+        onPurposeSelect(purposeValue);
       }}
       className="purpose-dropdown"
     >

@@ -27,3 +27,15 @@ export const changeItemsToShow = data => {
     payload: data
   };
 };
+export const changePeriodItems = data => {
+  return {
+    type: "CHANGE_PERIOD_ITEMS",
+    payload: data
+  };
+};
+export const dispatchPurposeValue = value => {
+  return {
+    type: "CHANGE_PURPOSE_VALUE",
+    payload: value
+  };
+};

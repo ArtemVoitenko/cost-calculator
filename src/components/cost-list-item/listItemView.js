@@ -7,16 +7,17 @@ const ListItemView = ({
   actionSum,
   actionId,
   onRemove,
-  onEditClick
+  onEditClick,
+  actionPurpose
 }) => {
   return (
     <li id={actionId} className="cost-list__item">
+      <div className={`purpose-image purpose-image--${actionPurpose}`} />
       <div className="cost-list__name">{actionName}</div>
       <div className={`cost-list__sum cost-list__sum--${actionType}`}>
         {actionSum}
       </div>
       <div className="cost-list__date">{actionDate}</div>
-      <div className="cost-list__type">{actionType}</div>
       <div className="cost-list__buttons">
         <button className="cost-list__edit" onClick={onEditClick}>
           edit

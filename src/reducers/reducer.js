@@ -2,7 +2,9 @@ const initialState = {
   test: false,
   error: false,
   data: [],
-  dataToShow: []
+  dataToShow: [],
+  periodItems: [],
+  purposeValue: ""
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -42,6 +44,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         dataToShow: action.payload
+      };
+    }
+    case "CHANGE_PERIOD_ITEMS": {
+      return {
+        ...state,
+        periodItems: action.payload
+      };
+    }
+    case "CHANGE_PURPOSE_VALUE": {
+      return {
+        ...state,
+        purposeValue: action.payload
       };
     }
     default: {
