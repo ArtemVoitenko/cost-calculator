@@ -13,11 +13,19 @@ class PurposeSortPicker extends Component {
     dispatchFilteredData(filteredData);
     dispatchPurposeValue(purposeValue);
   };
+  onPurposeClear = () => {
+    const { dispatchPurposeValue, dispatchFilteredData } = this.props;
+    dispatchPurposeValue("");
+    dispatchFilteredData(this.props.items);
+  };
 
   render() {
     return (
       <div>
         <button type="button">purposeFilter</button>
+        <button onClick={this.onPurposeClear} type="button">
+          clearPurpose
+        </button>
         <PurposeDropdown onPurposeSelect={this.onPurposeSelect} />
       </div>
     );
