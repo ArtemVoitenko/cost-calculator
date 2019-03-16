@@ -8,6 +8,7 @@ import Totals from "../totals";
 import PeriodSortPicker from "../period-sort-picker";
 import SumSortPicker from "../sum-sort-picker";
 import PurposeSortPicker from "../purpose-sort-picker";
+import PurposesChart from "../purposes-chart";
 
 export default class App extends Component {
   render() {
@@ -23,6 +24,7 @@ export default class App extends Component {
         <SumSortPicker />
         <PurposeSortPicker />
         <Totals />
+        <PurposesChart />
       </header>
     );
   }

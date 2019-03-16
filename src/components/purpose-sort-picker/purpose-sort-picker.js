@@ -4,29 +4,58 @@ import PurposeDropdown from "../purpose-dropdown";
 import { changeItemsToShow, dispatchPurposeValue } from "../../actions";
 
 class PurposeSortPicker extends Component {
-  onPurposeSelect = purposeValue => {
+  state = {
+    selectVisibiility: false,
+    clearPurposeVisibility: false,
+    purposeChecked: false
+  };
+  onPurposeSelect = async purposeValue => {
     const { items, dispatchFilteredData, dispatchPurposeValue } = this.props;
-
-    const filteredData = items.filter(item => {
-      return item.actionPurpose === purposeValue;
+    if (items) {
+      const filteredData = items.filter(item => {
+        return item.actionPurpose === purposeValue;
+      });
+      dispatchFilteredData(filteredData);
+      dispatchPurposeValue(purposeValue);
+      this.setState({
+        selectVisibiility: false,
+        clearPurposeVisibility: true,
+        purposeChecked: true
+      });
+    }
+  };
+  togglePurposeSelect = () => {
+    this.setState({
+      selectVisibiility: !this.state.selectVisibiility
     });
-    dispatchFilteredData(filteredData);
-    dispatchPurposeValue(purposeValue);
   };
   onPurposeClear = () => {
     const { dispatchPurposeValue, dispatchFilteredData } = this.props;
     dispatchPurposeValue("");
     dispatchFilteredData(this.props.items);
+    this.setState({
+      clearPurposeVisibility: false,
+      purposeChecked: false
+    });
   };
 
   render() {
+    const { selectVisibiility, clearPurposeVisibility } = this.state;
+    const purposeSelect = selectVisibiility ? (
+      <PurposeDropdown onPurposeSelect={this.onPurposeSelect} />
+    ) : null;
+    const purposeClearBtn = clearPurposeVisibility ? (
+      <button onClick={this.onPurposeClear} type="button">
+        clearPurpose
+      </button>
+    ) : null;
     return (
       <div>
-        <button type="button">purposeFilter</button>
-        <button onClick={this.onPurposeClear} type="button">
-          clearPurpose
+        <button onClick={this.togglePurposeSelect} type="button">
+          purposeFilter
         </button>
-        <PurposeDropdown onPurposeSelect={this.onPurposeSelect} />
+        {purposeSelect}
+        {purposeClearBtn}
       </div>
     );
   }

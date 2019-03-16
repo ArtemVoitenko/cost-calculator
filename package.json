@@ -5,10 +5,12 @@
   "dependencies": {
     "@wojtekmaj/react-daterange-picker": "^2.0.1",
     "calendar": "^0.1.0",
+    "fusioncharts": "^3.13.4",
     "node-sass": "^4.11.0",
     "react": "^16.7.0",
     "react-calendar": "^2.18.1",
     "react-dom": "^16.7.0",
+    "react-fusioncharts": "^3.0.0",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.5",
