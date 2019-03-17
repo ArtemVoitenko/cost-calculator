@@ -18,10 +18,32 @@ export default class PusposeList extends Component {
     });
     this.props.onPurposeChoose(purposeValue);
   };
+  consumptionList = () => {
+    return [
+      "home",
+      "food",
+      "sport",
+      "transport",
+      "shopping",
+      "family",
+      "rest",
+      "other"
+    ];
+  };
+  incomeList = () => {
+    return ["salary", "business", "premium", "debt", "else"];
+  };
 
   render() {
+    const purposeDataList =
+      this.props.actionType === "consumption"
+        ? this.consumptionList()
+        : this.incomeList();
     const purposeDropdown = this.state.listVisibility ? (
-      <PurposeDropdown onPurposeSelect={this.onPurposeSelect} />
+      <PurposeDropdown
+        onPurposeSelect={this.onPurposeSelect}
+        purposeDataList={purposeDataList}
+      />
     ) : null;
     return (
       <div className="purpose">

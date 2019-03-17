@@ -1,6 +1,6 @@
 import React from "react";
 import "./purpose-dropdown.scss";
-const PurposeDropdown = ({ onPurposeSelect }) => {
+const PurposeDropdown = ({ onPurposeSelect, purposeDataList }) => {
   return (
     <ul
       onClick={e => {
@@ -9,7 +9,16 @@ const PurposeDropdown = ({ onPurposeSelect }) => {
       }}
       className="purpose-dropdown"
     >
-      <li data-value="home" className="purpose-dropdown__item">
+      {purposeDataList.map(item => {
+        return (
+          <li data-value={item} className="purpose-dropdown__item">
+            <div className={`purpose-image purpose-image--${item}`} />
+            {item}
+          </li>
+        );
+      })}
+
+      {/* <li data-value="home" className="purpose-dropdown__item">
         <div className="purpose-image purpose-image--home" />
         Home
       </li>
@@ -40,7 +49,7 @@ const PurposeDropdown = ({ onPurposeSelect }) => {
       <li data-value="other" className="purpose-dropdown__item">
         <div className="purpose-image purpose-image--other" />
         Other
-      </li>
+      </li> */}
     </ul>
   );
 };

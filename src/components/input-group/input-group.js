@@ -120,6 +120,7 @@ class InputGroup extends Component {
     const isVisible = calendarVisibility ? "active" : "";
     const method =
       this.props.view === "edit" ? this.applyChange : this.onSubmit;
+
     return (
       <div className="input-panel">
         <form action="#" className="input-panel__form">
@@ -158,7 +159,10 @@ class InputGroup extends Component {
               <Calendar onChange={this.onCalendarPick} />
             </div>
           </div>
-          <PurposeList onPurposeChoose={this.onPurposeChoose} />
+          <PurposeList
+            onPurposeChoose={this.onPurposeChoose}
+            actionType={actionType}
+          />
           <button
             className="input-panel__submit"
             type="button"
