@@ -4,7 +4,8 @@ const initialState = {
   data: [],
   dataToShow: [],
   periodItems: [],
-  purposeValue: ""
+  purposeValue: "",
+  operationType: "all"
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -56,6 +57,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         purposeValue: action.payload
+      };
+    }
+    case "CHANGE_OPERATION_TYPE_FILTER": {
+      return {
+        ...state,
+        operationType: action.payload
       };
     }
     default: {

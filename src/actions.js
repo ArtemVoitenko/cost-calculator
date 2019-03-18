@@ -39,3 +39,9 @@ export const dispatchPurposeValue = value => {
     payload: value
   };
 };
+export const operationTypeFilterChange = value => {
+  return {
+    type: "CHANGE_OPERATION_TYPE_FILTER",
+    payload: value
+  };
+};

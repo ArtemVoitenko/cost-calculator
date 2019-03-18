@@ -33,16 +33,22 @@ export default class PusposeList extends Component {
   incomeList = () => {
     return ["salary", "business", "premium", "debt", "else"];
   };
+  allPurposesList = () => {
+    return [...this.consumptionList(), ...this.incomeList()];
+  };
 
   render() {
-    const purposeDataList =
+    console.log(this.allPurposesList());
+    const purposeNamesList =
       this.props.actionType === "consumption"
         ? this.consumptionList()
-        : this.incomeList();
+        : this.props.actionType === "income"
+        ? this.incomeList()
+        : this.allPurposesList();
     const purposeDropdown = this.state.listVisibility ? (
       <PurposeDropdown
         onPurposeSelect={this.onPurposeSelect}
-        purposeDataList={purposeDataList}
+        purposeNamesList={purposeNamesList}
       />
     ) : null;
     return (

@@ -9,6 +9,7 @@ import PeriodSortPicker from "../period-sort-picker";
 import SumSortPicker from "../sum-sort-picker";
 import PurposeSortPicker from "../purpose-sort-picker";
 import PurposesChart from "../purposes-chart";
+import OperationTypeFilter from "../operation-type-filter";
 
 export default class App extends Component {
   render() {
@@ -25,6 +26,7 @@ export default class App extends Component {
         <PurposeSortPicker />
         <Totals />
         <PurposesChart />
+        <OperationTypeFilter />
       </header>
     );
   }

@@ -16,27 +16,44 @@ class PeriodSortPicker extends Component {
       changeShownItems
     } = this.props;
     await this.setState({ date });
-
+    const defaultFilter = items.filter(item => {
+      return this.filterByActionType(item);
+    });
     if (this.state.date) {
       const sortedList = items.filter(item => {
         if (purposeValue) {
-          return this.sortByDate(item) && this.sortByPurpose(item);
+          console.log("its crush");
+          return (
+            this.sortByDate(item) &&
+            this.sortByPurpose(item) &&
+            this.filterByActionType(item)
+          );
         } else {
-          return this.sortByDate(item, purposeValue);
+          return (
+            this.sortByDate(item, purposeValue) && this.filterByActionType(item)
+          );
         }
       });
       changeShownItems(sortedList);
-      changePeriodItems(sortedList);
+      const filteredByPeriod = items.filter(item => {
+        return (
+          this.sortByDate(item, purposeValue) && this.filterByActionType(item)
+        );
+      });
+      changePeriodItems(filteredByPeriod);
     } else {
       if (purposeValue) {
         const filteredByPurpose = items.filter(item => {
-          return item.actionPurpose === purposeValue;
+          return (
+            item.actionPurpose === purposeValue && this.filterByActionType(item)
+          );
         });
         changeShownItems(filteredByPurpose);
+        changePeriodItems(defaultFilter);
       } else {
-        changeShownItems(items);
+        changeShownItems(defaultFilter);
+        changePeriodItems(defaultFilter);
       }
-      changePeriodItems(items);
     }
   };
   sortByDate = item => {
@@ -48,8 +65,18 @@ class PeriodSortPicker extends Component {
   sortByPurpose = (item, value) => {
     return item.actionPurpose === value;
   };
+  filterByActionType = item => {
+    if (this.props.operationType === "all") {
+      return item;
+    } else {
+      return item.actionType === this.props.operationType;
+    }
+  };
   componentDidUpdate(prevProps) {
-    if (this.props.items !== prevProps.items) {
+    if (
+      this.props.items !== prevProps.items ||
+      this.props.operationType !== prevProps.operationType
+    ) {
       this.onChange(this.state.date);
     }
   }
@@ -70,10 +97,11 @@ class PeriodSortPicker extends Component {
     );
   }
 }
-const mapStateToProps = ({ data, purposeValue }) => {
+const mapStateToProps = ({ data, purposeValue, operationType }) => {
   return {
     items: data,
-    purposeValue
+    purposeValue,
+    operationType
   };
 };
 const mapDispatchToProps = dispatch => {

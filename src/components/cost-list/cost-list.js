@@ -11,6 +11,7 @@ import {
 class CostList extends Component {
   componentDidMount() {
     this.initializeData();
+
     // console.log(`${this.props.items} our data`);
   }
 
@@ -33,6 +34,7 @@ class CostList extends Component {
   };
   renderList = () => {
     const listData = this.props.items;
+
     if (listData) {
       return listData.map(item => {
         return (

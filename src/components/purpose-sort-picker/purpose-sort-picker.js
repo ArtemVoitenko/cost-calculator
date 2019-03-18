@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PurposeDropdown from "../purpose-dropdown";
 import { changeItemsToShow, dispatchPurposeValue } from "../../actions";
+import PurposeList from "../purpose-list";
 
 class PurposeSortPicker extends Component {
   state = {
@@ -11,6 +12,8 @@ class PurposeSortPicker extends Component {
   };
   onPurposeSelect = async purposeValue => {
     const { items, dispatchFilteredData, dispatchPurposeValue } = this.props;
+    console.log(purposeValue);
+    console.log(items);
     if (items) {
       const filteredData = items.filter(item => {
         return item.actionPurpose === purposeValue;
@@ -38,12 +41,41 @@ class PurposeSortPicker extends Component {
       purposeChecked: false
     });
   };
+  consumptionList = () => {
+    return [
+      "home",
+      "food",
+      "sport",
+      "transport",
+      "shopping",
+      "family",
+      "rest",
+      "other"
+    ];
+  };
+  incomeList = () => {
+    return ["salary", "business", "premium", "debt", "else"];
+  };
+  allPurposesList = () => {
+    return [...this.consumptionList(), ...this.incomeList()];
+  };
 
   render() {
+    console.log(this.props.items);
+    const purposeNamesList =
+      this.props.operationType === "consumption"
+        ? this.consumptionList()
+        : this.props.operationType === "income"
+        ? this.incomeList()
+        : this.allPurposesList();
     const { selectVisibiility, clearPurposeVisibility } = this.state;
     const purposeSelect = selectVisibiility ? (
-      <PurposeDropdown onPurposeSelect={this.onPurposeSelect} />
-    ) : null;
+      <PurposeDropdown
+        onPurposeSelect={this.onPurposeSelect}
+        purposeNamesList={purposeNamesList}
+      />
+    ) : // <PurposeList actionType={this.props.operationType} />
+    null;
     const purposeClearBtn = clearPurposeVisibility ? (
       <button onClick={this.onPurposeClear} type="button">
         clearPurpose
@@ -61,8 +93,8 @@ class PurposeSortPicker extends Component {
   }
 }
 
-const mapStateToProps = ({ periodItems }) => {
-  return { items: periodItems };
+const mapStateToProps = ({ periodItems, operationType }) => {
+  return { items: periodItems, operationType };
 };
 const mapDispatchToProps = dispatch => {
   return {
