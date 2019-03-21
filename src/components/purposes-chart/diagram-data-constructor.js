@@ -1,5 +1,5 @@
-export const prepareDataToPieChart = data => {
-  const calculatedPurposes = {
+export const prepareDataToPieChart = (data, operationType) => {
+  const calculatedConsumption = {
     home: 0,
     food: 0,
     sport: 0,
@@ -9,7 +9,24 @@ export const prepareDataToPieChart = data => {
     rest: 0,
     other: 0
   };
-  return calculatePurposes(data, calculatedPurposes);
+  const calculatedIncome = {
+    salary: 0,
+    business: 0,
+    premium: 0,
+    debt: 0,
+    else: 0
+  };
+  const calculateAll = {
+    income: 0,
+    consumption: 0
+  };
+  const resultArray =
+    operationType === "consumption"
+      ? calculatedConsumption
+      : operationType === "income"
+      ? calculatedIncome
+      : calculateAll;
+  return calculatePurposes(data, resultArray, operationType);
 };
 function formConfigArray(outputArray) {
   const configuratedArray = [];
@@ -26,16 +43,20 @@ function incrementPurposeSum(purpose, moneyAmount, outputArray) {
   outputArray[`${purpose}`] += parseFloat(moneyAmount);
 }
 
-function calculatePurposes(data, outputArray) {
+function calculatePurposes(data, outputArray, operationType) {
   if (data) {
     for (let i = 0; i < data.length; i++) {
-      data[i].actionType === "consumption"
+      operationType === "all"
         ? incrementPurposeSum(
-            data[i].actionPurpose,
+            data[i].actionType,
             data[i].actionSum,
             outputArray
           )
-        : console.log("yess");
+        : incrementPurposeSum(
+            data[i].actionPurpose,
+            data[i].actionSum,
+            outputArray
+          );
     }
     return formConfigArray(outputArray);
   }

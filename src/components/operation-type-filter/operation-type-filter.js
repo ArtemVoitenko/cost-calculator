@@ -28,7 +28,6 @@ class OperationTypeFilter extends Component {
         >
           income
         </button>{" "}
-        />
         <button
           onClick={e => {
             this.changeOperationTypeFilter(e);

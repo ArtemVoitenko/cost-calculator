@@ -25,8 +25,8 @@ export default class App extends Component {
         <SumSortPicker />
         <PurposeSortPicker />
         <Totals />
-        <PurposesChart />
         <OperationTypeFilter />
+        <PurposesChart />
       </header>
     );
   }

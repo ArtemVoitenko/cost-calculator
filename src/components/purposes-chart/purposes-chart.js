@@ -11,7 +11,10 @@ charts(fusioncharts);
 
 class PurposesChart extends React.Component {
   render() {
-    const convertedData = prepareDataToPieChart(this.props.data);
+    const convertedData = prepareDataToPieChart(
+      this.props.data,
+      this.props.operationType
+    );
 
     return (
       <ReactFusioncharts
@@ -26,7 +29,7 @@ class PurposesChart extends React.Component {
   }
 }
 
-const mapStateToProps = ({ dataToShow }) => {
-  return { data: dataToShow };
+const mapStateToProps = ({ dataToShow, operationType }) => {
+  return { data: dataToShow, operationType };
 };
 export default connect(mapStateToProps)(PurposesChart);
