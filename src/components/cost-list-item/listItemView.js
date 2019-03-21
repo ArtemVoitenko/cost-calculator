@@ -8,7 +8,8 @@ const ListItemView = ({
   actionId,
   onRemove,
   onEditClick,
-  actionPurpose
+  actionPurpose,
+  getItemInfo
 }) => {
   return (
     <li id={actionId} className="cost-list__item">
@@ -29,6 +30,9 @@ const ListItemView = ({
           }}
         >
           remove
+        </button>
+        <button className="cost-list__more-info" onClick={getItemInfo}>
+          info
         </button>
       </div>
     </li>

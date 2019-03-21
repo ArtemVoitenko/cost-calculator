@@ -5,14 +5,13 @@ import "./cost-list.scss";
 import {
   deleteItem,
   initializeItemsList,
-  changeItemsToShow
+  changeItemsToShow,
+  setActionId
 } from "../../actions";
 
 class CostList extends Component {
   componentDidMount() {
     this.initializeData();
-
-    // console.log(`${this.props.items} our data`);
   }
 
   initializeData() {
@@ -32,6 +31,10 @@ class CostList extends Component {
     localStorage.setItem("items", JSON.stringify(newData));
     this.props.deleteItem(JSON.parse(localStorage.getItem("items")));
   };
+  getItemInfo = actionId => {
+    this.props.setActionId(actionId);
+    console.log(actionId);
+  };
   renderList = () => {
     const listData = this.props.items;
 
@@ -42,6 +45,9 @@ class CostList extends Component {
             key={item.actionId}
             {...item}
             onRemove={this.onRemove}
+            getItemInfo={() => {
+              this.getItemInfo(item.actionId);
+            }}
           />
         );
       });
@@ -68,7 +74,8 @@ const mapDispatchToProps = dispatch => {
     initializeItemsList: data => {
       dispatch(initializeItemsList(data));
     },
-    changeShownItems: items => dispatch(changeItemsToShow(items))
+    changeShownItems: items => dispatch(changeItemsToShow(items)),
+    setActionId: actionId => dispatch(setActionId(actionId))
   };
 };
 

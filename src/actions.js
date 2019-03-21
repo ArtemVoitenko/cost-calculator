@@ -45,3 +45,9 @@ export const operationTypeFilterChange = value => {
     payload: value
   };
 };
+export const setActionId = actionId => {
+  return {
+    type: "SET_ACTION_ID",
+    payload: actionId
+  };
+};

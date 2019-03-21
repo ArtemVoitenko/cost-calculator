@@ -5,7 +5,8 @@ const initialState = {
   dataToShow: [],
   periodItems: [],
   purposeValue: "",
-  operationType: "all"
+  operationType: "all",
+  actionId: ""
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -63,6 +64,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         operationType: action.payload
+      };
+    }
+    case "SET_ACTION_ID": {
+      return {
+        ...state,
+        actionId: action.payload
       };
     }
     default: {
