@@ -33,7 +33,6 @@ class CostList extends Component {
   };
   getItemInfo = actionId => {
     this.props.setActionId(actionId);
-    console.log(actionId);
   };
   renderList = () => {
     const listData = this.props.items;

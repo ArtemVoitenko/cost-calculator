@@ -3,6 +3,7 @@ import Calendar from "react-calendar";
 import { addItem } from "../../actions";
 import { connect } from "react-redux";
 import PurposeList from "../purpose-list";
+import ActionImage from "../action-image";
 
 class InputGroup extends Component {
   convertDate = date => {
@@ -41,6 +42,12 @@ class InputGroup extends Component {
     const sum = e.target.value;
     this.setState({ actionSum: sum });
   };
+  onDescriptionInput = e => {
+    const description = e.target.value;
+    this.setState({
+      actionDescription: description
+    });
+  };
   showCalendar = () => {
     this.setState({
       calendarVisibility: !this.state.calendarVisibility
@@ -56,7 +63,6 @@ class InputGroup extends Component {
   };
   onPurposeChoose = async purpose => {
     await this.setState({ actionPurpose: purpose });
-    console.log(`purpose: ${this.state.actionPurpose}`);
   };
   generateId = () => {
     return (
@@ -65,6 +71,43 @@ class InputGroup extends Component {
         .toString(36)
         .substr(2, 9)
     );
+  };
+  addImages = e => {
+    var images = e.target.files;
+    for (var i = 0, f; (f = images[i]); i++) {
+      var reader = new FileReader();
+      reader.onload = e => {
+        this.setState(({ actionImages = [] }) => {
+          return { actionImages: [...actionImages, e.target.result] };
+        });
+      };
+      reader.readAsDataURL(f);
+    }
+  };
+  fileInputImitation = e => {
+    e.target.nextSibling.click();
+  };
+  onImageRemove = idx => {
+    this.setState(({ actionImages }) => {
+      return {
+        actionImages: [
+          ...actionImages.slice(0, idx),
+          ...actionImages.slice(idx + 1)
+        ]
+      };
+    });
+  };
+  renderImagesPreview = images => {
+    return images.map((image, idx) => {
+      return (
+        <ActionImage
+          url={image}
+          onImageRemove={this.onImageRemove}
+          key={idx}
+          imageId={idx}
+        />
+      );
+    });
   };
   applyChange = async () => {
     this.props.applyChange();
@@ -85,7 +128,6 @@ class InputGroup extends Component {
     );
     const dataToStore = JSON.parse(localStorage.getItem("items"));
     this.props.addItem(dataToStore);
-    console.log("edit edit");
   };
   onSubmit = async () => {
     await this.setState({
@@ -105,7 +147,9 @@ class InputGroup extends Component {
       actionSum: "",
       actionType: "consumption",
       actionDate: "",
-      dateMilliseconds: new Date().getTime()
+      actionDescription: "",
+      dateMilliseconds: new Date().getTime(),
+      actionImages: []
     });
   };
 
@@ -115,8 +159,16 @@ class InputGroup extends Component {
       actionName,
       actionSum,
       actionType,
-      actionDate
+      actionDate,
+      actionDescription,
+      actionImages = []
     } = this.state;
+    const imageList = () => {
+      return actionImages ? (
+        <div>{this.renderImagesPreview(actionImages)}</div>
+      ) : null;
+    };
+
     const isVisible = calendarVisibility ? "active" : "";
     const method =
       this.props.view === "edit" ? this.applyChange : this.onSubmit;
@@ -163,6 +215,12 @@ class InputGroup extends Component {
             onPurposeChoose={this.onPurposeChoose}
             actionType={actionType}
           />
+          <button type="button" onClick={this.fileInputImitation}>
+            browse
+          </button>
+          <input type="file" hidden onChange={this.addImages} />
+
+          {imageList()}
           <button
             className="input-panel__submit"
             type="button"
@@ -170,6 +228,11 @@ class InputGroup extends Component {
           >
             ok
           </button>
+          <textarea
+            className="input-panel__textarea"
+            value={actionDescription}
+            onChange={this.onDescriptionInput}
+          />
         </form>
       </div>
     );
