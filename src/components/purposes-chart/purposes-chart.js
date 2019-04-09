@@ -20,7 +20,7 @@ class PurposesChart extends React.Component {
       <ReactFusioncharts
         type="doughnut2d"
         width="100%"
-        height="100%"
+        height="40%"
         containerBackgroundOpacity="0"
         dataFormat="JSON"
         dataSource={dataSource(convertedData)}

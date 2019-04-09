@@ -1,12 +1,14 @@
 export const dataSource = data => {
   return {
     chart: {
-      caption: "Android Distribution for our app",
-      subcaption: "For all users in 2017",
+      chartTopMargin: "0",
+
+      chartBottomMargin: "0",
       showpercentvalues: "1",
       defaultcenterlabel: "Consumption",
       centerlabel: "$label: $value",
-      centerLabelFontSize: "28",
+      centerLabelFontSize: "16",
+      canvasPadding: "0",
       centerLabelColor: "#DD4F42",
       aligncaptionwithcanvas: "0",
       captionpadding: "0",
