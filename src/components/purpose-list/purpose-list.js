@@ -6,6 +6,13 @@ export default class PusposeList extends Component {
     purpose: "other",
     listVisibility: false
   };
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      this.setState({
+        purpose: this.props.purpose
+      });
+    }
+  }
   onOpenClick = () => {
     this.setState({
       listVisibility: !this.state.listVisibility
@@ -38,7 +45,6 @@ export default class PusposeList extends Component {
   };
 
   render() {
-    console.log(this.allPurposesList());
     const purposeNamesList =
       this.props.actionType === "consumption"
         ? this.consumptionList()

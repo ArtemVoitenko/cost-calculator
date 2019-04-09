@@ -37,6 +37,7 @@ function formConfigArray(outputArray) {
         value: outputArray[key]
       });
   }
+  console.log(configuratedArray);
   return configuratedArray;
 }
 function incrementPurposeSum(purpose, moneyAmount, outputArray) {

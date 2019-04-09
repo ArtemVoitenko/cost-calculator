@@ -37,6 +37,10 @@ class InputGroup extends Component {
   onTypeChange = e => {
     const actionType = e.target.value;
     this.setState({ actionType });
+    if (actionType === "consumption") {
+    } else {
+      this.setState({ actionPurpose: "else" });
+    }
   };
   onSumInput = e => {
     const sum = e.target.value;
@@ -148,6 +152,7 @@ class InputGroup extends Component {
       actionType: "consumption",
       actionDate: "",
       actionDescription: "",
+      actionPurpose: "other",
       dateMilliseconds: new Date().getTime(),
       actionImages: []
     });
@@ -214,6 +219,7 @@ class InputGroup extends Component {
           <PurposeList
             onPurposeChoose={this.onPurposeChoose}
             actionType={actionType}
+            purpose={this.state.actionPurpose}
           />
           <button type="button" onClick={this.fileInputImitation}>
             browse
