@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 
-import CostList from "../cost-list";
 import "./app.scss";
 import "./normilize.scss";
-import ItemCreator from "../item-creator";
 
-import PeriodSortPicker from "../period-sort-picker";
-import SumSortPicker from "../sum-sort-picker";
-import PurposeSortPicker from "../purpose-sort-picker";
-
-import OperationTypeFilter from "../operation-type-filter";
-import DetailsSection from "../details-section";
+import ItemsPart from "../items-part/items-part";
+import InformationPart from "../information-part";
 
 export default class App extends Component {
   render() {
@@ -19,13 +13,8 @@ export default class App extends Component {
         <a href="#" className="logo">
           MoneyGuard
         </a>
-        <ItemCreator />
-        <CostList />
-        <PeriodSortPicker />
-        <SumSortPicker />
-        <PurposeSortPicker />
-        <OperationTypeFilter />
-        <DetailsSection />
+        <ItemsPart />
+        <InformationPart />
       </header>
     );
   }
