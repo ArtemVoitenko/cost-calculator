@@ -17,14 +17,16 @@ class PurposesChart extends React.Component {
     );
 
     return (
-      <ReactFusioncharts
-        type="doughnut2d"
-        width="100%"
-        height="100%"
-        containerBackgroundOpacity="0"
-        dataFormat="JSON"
-        dataSource={dataSource(convertedData)}
-      />
+      <div className="chart-wrapper">
+        <ReactFusioncharts
+          type="doughnut2d"
+          width="100%"
+          height="60%"
+          containerBackgroundOpacity="0"
+          dataFormat="JSON"
+          dataSource={dataSource(convertedData)}
+        />
+      </div>
     );
   }
 }
