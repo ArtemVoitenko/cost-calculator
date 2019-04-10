@@ -24,7 +24,7 @@ class InputGroup extends Component {
   };
   state = {
     ...this.props.state,
-    actionType: "consumption",
+    actionType: "expense",
     actionPurpose: "other",
     calendarVisibility: false
   };
@@ -45,7 +45,7 @@ class InputGroup extends Component {
   onTypeChange = e => {
     const actionType = e.target.value;
     this.setState({ actionType });
-    if (actionType === "consumption") {
+    if (actionType === "expense") {
     } else {
       this.setState({ actionPurpose: "else" });
     }
@@ -157,7 +157,7 @@ class InputGroup extends Component {
     this.setState({
       actionName: "",
       actionSum: "",
-      actionType: "consumption",
+      actionType: "expense",
       actionDate: this.convertDate(new Date()),
       actionDescription: "",
       actionPurpose: "other",
@@ -210,7 +210,7 @@ class InputGroup extends Component {
             onChange={this.onTypeChange}
             value={actionType}
           >
-            <option defaultValue="consumption">consumption</option>
+            <option defaultValue="expense">expense</option>
             <option value="income">income</option>
           </select>
           <div className="input-panel__calendar-wrapper">

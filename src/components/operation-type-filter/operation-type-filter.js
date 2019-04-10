@@ -33,9 +33,9 @@ class OperationTypeFilter extends Component {
             this.changeOperationTypeFilter(e);
           }}
           className="operation-filter__btn "
-          value="consumption"
+          value="expense"
         >
-          consumption
+          expense
         </button>
       </div>
     );

@@ -2,7 +2,9 @@ export const dataSource = data => {
   return {
     chart: {
       showpercentvalues: "1",
-      defaultcenterlabel: "Consumption",
+      defaultcenterlabel: "expense",
+
+      showLegend: "1",
       centerlabel: "$label: $value",
       centerLabelFontSize: "16",
       labelFontSize: "14",

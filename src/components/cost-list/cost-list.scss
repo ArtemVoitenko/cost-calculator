@@ -9,7 +9,7 @@
     border: 1px solid #7e989e;
     border-bottom: 1px solid #4eb6fb;
     border-radius: 10px;
-    &--consumption {
+    &--expense {
       border-bottom-color: yellow;
     }
   }
@@ -30,7 +30,7 @@
     font-size: 14px;
     border-radius: 4px;
     color: #000000;
-    &--consumption {
+    &--expense {
       background-color: yellow;
     }
     &--income {
