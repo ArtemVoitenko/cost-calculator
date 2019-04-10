@@ -1,16 +1,53 @@
 .cost-list {
   display: flex;
   flex-direction: column;
+
   &__item {
     display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    border: 1px solid #7e989e;
+    border-bottom: 1px solid #4eb6fb;
+    border-radius: 10px;
+    &--consumption {
+      border-bottom-color: yellow;
+    }
+  }
+  &__name {
+    margin-right: 10px;
+    width: 35%;
+  }
+  &__date {
+    margin-right: 30px;
   }
   &__sum {
-    font-weight: bold;
+    width: 100px;
+    text-align: center;
+    margin-right: 10px;
+    padding: 5px;
+    letter-spacing: 1px;
+
+    font-size: 14px;
+    border-radius: 4px;
+    color: #000000;
     &--consumption {
-      color: red;
+      background-color: yellow;
     }
     &--income {
-      color: green;
+      background-color: #4eb6fb;
+      color: #ffffff;
     }
+  }
+  &__icon {
+    display: block;
+    width: 25px;
+    height: 25px;
+    color: #ffffff;
+  }
+  &__btn {
+    margin-right: 10px;
+  }
+  &__buttons {
+    margin-left: auto;
   }
 }
