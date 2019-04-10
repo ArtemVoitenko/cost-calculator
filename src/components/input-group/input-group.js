@@ -28,6 +28,14 @@ class InputGroup extends Component {
     actionPurpose: "other",
     calendarVisibility: false
   };
+  componentDidMount() {
+    if (!this.state.actionDate) {
+      this.setState({
+        actionDate: this.convertDate(new Date()),
+        dateMilliseconds: new Date().getTime()
+      });
+    }
+  }
   onNameInput = e => {
     const actionName = e.target.value;
     this.setState({
@@ -150,7 +158,7 @@ class InputGroup extends Component {
       actionName: "",
       actionSum: "",
       actionType: "consumption",
-      actionDate: "",
+      actionDate: this.convertDate(new Date()),
       actionDescription: "",
       actionPurpose: "other",
       dateMilliseconds: new Date().getTime(),
@@ -168,6 +176,7 @@ class InputGroup extends Component {
       actionDescription,
       actionImages = []
     } = this.state;
+
     const imageList = () => {
       return actionImages ? (
         <div>{this.renderImagesPreview(actionImages)}</div>

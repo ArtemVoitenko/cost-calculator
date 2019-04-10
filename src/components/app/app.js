@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./app.scss";
 import "./normilize.scss";
 import "../../fonts/fonts.scss";
+import "../../styles/reset.scss";
 
 import ItemsPart from "../items-part/items-part";
 
