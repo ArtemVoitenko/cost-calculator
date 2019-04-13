@@ -2,10 +2,11 @@ import React from "react";
 import "./date-line.scss";
 var moment = require("moment");
 
-const DateLine = () => {
+const DateLine = ({ toggleItemCreator, opened }) => {
   const today = moment().format("DD");
   const week = moment().format("dddd");
   const months = moment().format("MMMM YYYY");
+  const buttonText = opened ? "Close" : "  Add item +";
   return (
     <div className="date-line">
       <div className="date">
@@ -15,7 +16,9 @@ const DateLine = () => {
           <div className="date__months">{months}</div>
         </div>
       </div>
-      <button className="add-item-btn">Add item +</button>
+      <button onClick={() => toggleItemCreator()} className="add-item-btn">
+        {buttonText}
+      </button>
     </div>
   );
 };

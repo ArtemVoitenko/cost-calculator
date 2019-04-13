@@ -6,7 +6,9 @@ const initialState = {
   periodItems: [],
   purposeValue: "",
   operationType: "all",
-  actionId: ""
+  actionId: "",
+  itemCreatorVisibility: false,
+  itemEditId: ""
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -42,7 +44,6 @@ const reducer = (state = initialState, action) => {
       };
     }
     case "CHANGE_ITEMS_TO_SHOW": {
-      console.log("data change");
       return {
         ...state,
         dataToShow: action.payload
@@ -70,6 +71,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         actionId: action.payload
+      };
+    }
+    case "CHANGE_ITEM_CREATOR_VISIBILITY": {
+      return {
+        ...state,
+        itemCreatorVisibility: !state.itemCreatorVisibility
+      };
+    }
+    case "CHANGE_ITEM_VIEW": {
+      return {
+        ...state,
+        itemEditId: action.payload
       };
     }
     default: {

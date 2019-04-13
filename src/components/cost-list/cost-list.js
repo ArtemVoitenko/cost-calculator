@@ -6,7 +6,8 @@ import {
   deleteItem,
   initializeItemsList,
   changeItemsToShow,
-  setActionId
+  setActionId,
+  changeItemView
 } from "../../actions";
 
 class CostList extends Component {
@@ -42,7 +43,10 @@ class CostList extends Component {
         return (
           <CostListItem
             key={item.actionId}
+            editItemId={this.props.editItemId}
+            changeItemView={this.props.changeItemView}
             {...item}
+            itemId={item.actionId}
             onRemove={this.onRemove}
             getItemInfo={() => {
               this.getItemInfo(item.actionId);
@@ -59,9 +63,10 @@ class CostList extends Component {
   }
 }
 
-const mapStateToProps = ({ dataToShow }) => {
+const mapStateToProps = ({ dataToShow, itemEditId }) => {
   return {
-    items: dataToShow
+    items: dataToShow,
+    editItemId: itemEditId
   };
 };
 
@@ -74,7 +79,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(initializeItemsList(data));
     },
     changeShownItems: items => dispatch(changeItemsToShow(items)),
-    setActionId: actionId => dispatch(setActionId(actionId))
+    setActionId: actionId => dispatch(setActionId(actionId)),
+    changeItemView: itemId => dispatch(changeItemView(itemId))
   };
 };
 

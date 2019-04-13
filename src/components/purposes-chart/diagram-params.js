@@ -4,7 +4,7 @@ export const dataSource = data => {
       showpercentvalues: "1",
       defaultcenterlabel: "expense",
 
-      showLegend: "1",
+      // showLegend: "1",
       centerlabel: "$label: $value",
       centerLabelFontSize: "16",
       labelFontSize: "14",

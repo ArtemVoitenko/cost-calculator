@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Calendar from "react-calendar";
-import { addItem } from "../../actions";
+import { addItem, changeItemCreatorVisibility } from "../../actions";
 import { connect } from "react-redux";
 import PurposeList from "../purpose-list";
 import ActionImage from "../action-image";
@@ -164,6 +164,7 @@ class InputGroup extends Component {
       dateMilliseconds: new Date().getTime(),
       actionImages: []
     });
+    this.props.changeCreatorVisibility();
   };
 
   render() {
@@ -262,6 +263,9 @@ const mapDispatchToProps = dispatch => {
   return {
     addItem: item => {
       dispatch(addItem(item));
+    },
+    changeCreatorVisibility: () => {
+      dispatch(changeItemCreatorVisibility());
     }
   };
 };
