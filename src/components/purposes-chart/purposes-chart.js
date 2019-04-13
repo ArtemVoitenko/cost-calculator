@@ -17,6 +17,7 @@ class PurposesChart extends React.Component {
     );
 
     return (
+
       <div className="chart-wrapper">
         <ReactFusioncharts
           type="doughnut2d"
@@ -27,6 +28,7 @@ class PurposesChart extends React.Component {
           dataSource={dataSource(convertedData)}
         />
       </div>
+
     );
   }
 }

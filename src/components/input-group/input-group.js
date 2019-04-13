@@ -4,6 +4,7 @@ import { addItem, changeItemCreatorVisibility } from "../../actions";
 import { connect } from "react-redux";
 import PurposeList from "../purpose-list";
 import ActionImage from "../action-image";
+import "./input-group.scss";
 
 class InputGroup extends Component {
   convertDate = date => {
@@ -189,22 +190,33 @@ class InputGroup extends Component {
       this.props.view === "edit" ? this.applyChange : this.onSubmit;
 
     return (
-      <div className="input-panel">
-        <form action="#" className="input-panel__form">
-          <input
-            className="input-panel__input"
-            onChange={this.onNameInput}
-            value={actionName}
-            placeholder="type header"
-            type="text"
-          />
-          <input
-            className="input-panel__input"
-            onChange={this.onSumInput}
-            value={actionSum}
-            placeholder="Enter sum"
-            type="text"
-          />
+      <div>
+        <div className="input-panel">
+          <div className="input">
+            <label class="input__label" htmlFor="title">
+              Record
+            </label>
+            <input
+              className="input__field"
+              onChange={this.onNameInput}
+              value={actionName}
+              placeholder="type header"
+              type="text"
+              id="title"
+            />
+          </div>
+          <div className="input">
+            <label class="input__label" htmlFor="sum">
+              Sum
+            </label>
+            <input
+              className="input__field"
+              onChange={this.onSumInput}
+              value={actionSum}
+              placeholder="Enter sum"
+              type="text"
+            />
+          </div>
           <select
             name="actionType"
             id="actionTypeSelect"
@@ -216,7 +228,7 @@ class InputGroup extends Component {
           </select>
           <div className="input-panel__calendar-wrapper">
             <button
-              className="btn btn-primary input-panel__button"
+              className="btn-show-calendar"
               onClick={this.showCalendar}
               type="button"
             >
@@ -244,12 +256,19 @@ class InputGroup extends Component {
           >
             ok
           </button>
+        </div>
+        <div className="input input--textarea">
+          <label class="input__label" htmlFor="description">
+            Description
+          </label>
+
           <textarea
-            className="input-panel__textarea"
+            className="input__field"
             value={actionDescription}
             onChange={this.onDescriptionInput}
+            id="description"
           />
-        </form>
+        </div>
       </div>
     );
   }

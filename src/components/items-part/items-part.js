@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ItemCreator from "../item-creator";
 import CostList from "../cost-list";
+
 import DateLine from "../date-line";
 import "./items-part.scss";
 import FilterSection from "../filter-section";
@@ -12,6 +13,7 @@ class ItemsPart extends Component {
     console.log(this.props);
     this.props.changeCreatorVisibility();
   };
+
   render() {
     const itemCreatorOrList = this.props.creatorVisibility ? (
       <ItemCreator />
@@ -20,6 +22,7 @@ class ItemsPart extends Component {
     );
 
     return (
+
       <div class="items-part">
         <DateLine
           toggleItemCreator={this.toggleItemCreator}
@@ -27,6 +30,7 @@ class ItemsPart extends Component {
         />
         {itemCreatorOrList}
         <FilterSection />
+
       </div>
     );
   }
