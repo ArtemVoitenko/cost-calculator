@@ -159,16 +159,6 @@ class InputGroup extends Component {
 
     if (actionName && actionSum) {
       this.setState({ allInputsValid: true });
-    } else if (!actionName) {
-      this.setState({
-        nameError: true,
-        allInputsValid: false
-      });
-    } else if (!actionSum) {
-      this.setState({
-        sumError: true,
-        allInputsValid: false
-      });
     }
   };
   onSubmit = async () => {
@@ -205,9 +195,7 @@ class InputGroup extends Component {
       actionType,
       actionDate,
       actionDescription,
-      actionImages = [],
-      sumError,
-      nameError
+      actionImages = []
     } = this.state;
 
     const imageList = () => {
@@ -215,8 +203,8 @@ class InputGroup extends Component {
         <div>{this.renderImagesPreview(actionImages)}</div>
       ) : null;
     };
-    const sumInputClass = sumError ? "input--error" : "";
-    const nameInputClass = nameError ? "input--error" : "";
+    const sumInputClass = !actionSum ? "input--error" : "";
+    const nameInputClass = !actionName ? "input--error" : "";
     const isVisible = calendarVisibility ? "active" : "";
     const method =
       this.props.view === "edit" ? this.applyChangeClick : this.onSubmitClick;

@@ -27,7 +27,9 @@ const ListItemView = ({
       <div className="cost-list__buttons">
         <button
           className=" cost-list__btn cost-list__edit"
-          onClick={onEditClick}
+          onClick={() => {
+            onEditClick(actionId);
+          }}
         >
           <Icon icon="edit" iconClass="cost-list__icon" />
         </button>
