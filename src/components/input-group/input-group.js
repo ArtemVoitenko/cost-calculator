@@ -27,7 +27,10 @@ class InputGroup extends Component {
     ...this.props.state,
     actionType: "expense",
     actionPurpose: "other",
-    calendarVisibility: false
+    calendarVisibility: false,
+    nameError: true,
+    sumError: true,
+    allInputsValid: false
   };
   componentDidMount() {
     if (!this.state.actionDate) {
@@ -52,7 +55,8 @@ class InputGroup extends Component {
     }
   };
   onSumInput = e => {
-    const sum = e.target.value;
+    const value = e.target.value;
+    const sum = !isNaN(parseFloat(value)) ? parseFloat(value) : "";
     this.setState({ actionSum: sum });
   };
   onDescriptionInput = e => {
@@ -142,6 +146,31 @@ class InputGroup extends Component {
     const dataToStore = JSON.parse(localStorage.getItem("items"));
     this.props.addItem(dataToStore);
   };
+  applyChangeClick = async () => {
+    await this.checkIsValidInput();
+    this.state.allInputsValid ? this.applyChange() : alert("You are stupid");
+  };
+  onSubmitClick = async () => {
+    await this.checkIsValidInput();
+    this.state.allInputsValid ? this.onSubmit() : alert("You are stupid");
+  };
+  checkIsValidInput = () => {
+    const { actionName, actionSum } = this.state;
+
+    if (actionName && actionSum) {
+      this.setState({ allInputsValid: true });
+    } else if (!actionName) {
+      this.setState({
+        nameError: true,
+        allInputsValid: false
+      });
+    } else if (!actionSum) {
+      this.setState({
+        sumError: true,
+        allInputsValid: false
+      });
+    }
+  };
   onSubmit = async () => {
     await this.setState({
       actionId: this.generateId()
@@ -176,7 +205,9 @@ class InputGroup extends Component {
       actionType,
       actionDate,
       actionDescription,
-      actionImages = []
+      actionImages = [],
+      sumError,
+      nameError
     } = this.state;
 
     const imageList = () => {
@@ -184,15 +215,16 @@ class InputGroup extends Component {
         <div>{this.renderImagesPreview(actionImages)}</div>
       ) : null;
     };
-
+    const sumInputClass = sumError ? "input--error" : "";
+    const nameInputClass = nameError ? "input--error" : "";
     const isVisible = calendarVisibility ? "active" : "";
     const method =
-      this.props.view === "edit" ? this.applyChange : this.onSubmit;
+      this.props.view === "edit" ? this.applyChangeClick : this.onSubmitClick;
 
     return (
       <div>
         <div className="input-panel">
-          <div className="input">
+          <div className={`input ${nameInputClass}`}>
             <label class="input__label" htmlFor="title">
               Record
             </label>
@@ -205,7 +237,7 @@ class InputGroup extends Component {
               id="title"
             />
           </div>
-          <div className="input">
+          <div className={`input ${sumInputClass}`}>
             <label class="input__label" htmlFor="sum">
               Sum
             </label>
