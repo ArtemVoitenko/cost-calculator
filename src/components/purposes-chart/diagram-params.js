@@ -1,14 +1,18 @@
 export const dataSource = data => {
   return {
     chart: {
-      chartTopMargin: "0",
 
-      chartBottomMargin: "0",
+
       showpercentvalues: "1",
-      defaultcenterlabel: "Consumption",
+      defaultcenterlabel: "expense",
+
+      // showLegend: "1",
       centerlabel: "$label: $value",
       centerLabelFontSize: "16",
-      canvasPadding: "0",
+
+      labelFontSize: "14",
+      labelFont: "Exo2",
+
       centerLabelColor: "#DD4F42",
       aligncaptionwithcanvas: "0",
       captionpadding: "0",

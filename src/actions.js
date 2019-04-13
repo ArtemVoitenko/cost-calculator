@@ -51,3 +51,14 @@ export const setActionId = actionId => {
     payload: actionId
   };
 };
+export const changeItemCreatorVisibility = () => {
+  return {
+    type: "CHANGE_ITEM_CREATOR_VISIBILITY"
+  };
+};
+export const changeItemView = itemId => {
+  return {
+    type: "CHANGE_ITEM_VIEW",
+    payload: itemId
+  };
+};

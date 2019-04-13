@@ -1,5 +1,5 @@
 export const prepareDataToPieChart = (data, operationType) => {
-  const calculatedConsumption = {
+  const calculatedexpense = {
     home: 0,
     food: 0,
     sport: 0,
@@ -18,11 +18,11 @@ export const prepareDataToPieChart = (data, operationType) => {
   };
   const calculateAll = {
     income: 0,
-    consumption: 0
+    expense: 0
   };
   const resultArray =
-    operationType === "consumption"
-      ? calculatedConsumption
+    operationType === "expense"
+      ? calculatedexpense
       : operationType === "income"
       ? calculatedIncome
       : calculateAll;
@@ -37,6 +37,7 @@ function formConfigArray(outputArray) {
         value: outputArray[key]
       });
   }
+  console.log(configuratedArray);
   return configuratedArray;
 }
 function incrementPurposeSum(purpose, moneyAmount, outputArray) {

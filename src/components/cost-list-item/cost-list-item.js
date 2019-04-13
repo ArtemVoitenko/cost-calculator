@@ -9,6 +9,7 @@ export default class CostListItem extends Component {
     this.setState({
       editMode: true
     });
+    this.props.changeItemView(this.props.itemId);
   };
   applyChange = () => {
     this.setState({
@@ -17,7 +18,7 @@ export default class CostListItem extends Component {
   };
   render() {
     const { editMode } = this.state;
-    if (editMode) {
+    if (editMode && this.props.editItemId === this.props.itemId) {
       return <EditItemView {...this.props} applyChange={this.applyChange} />;
     }
     return <ListItemView {...this.props} onEditClick={this.onEditClick} />;

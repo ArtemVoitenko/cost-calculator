@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 class Totals extends Component {
   state = {
-    consumptionTotals: 0,
+    expenseTotals: 0,
     incomeTotals: 0,
     totalCostSum: 0
   };
@@ -17,7 +17,7 @@ class Totals extends Component {
     if (data) {
       for (let i = 0; i < data.length; i++) {
         const item = data[i];
-        if (item.actionType === "consumption") {
+        if (item.actionType === "expense") {
           minus += parseFloat(item.actionSum);
           total -= parseFloat(item.actionSum);
         } else {
@@ -27,7 +27,7 @@ class Totals extends Component {
       }
     }
     this.setState({
-      consumptionTotals: -minus,
+      expenseTotals: -minus,
       incomeTotals: plus,
       totalCostSum: total
     });
@@ -42,11 +42,11 @@ class Totals extends Component {
     }
   }
   render() {
-    const { consumptionTotals, incomeTotals, totalCostSum } = this.state;
+    const { expenseTotals, incomeTotals, totalCostSum } = this.state;
     return (
       <div className="totals">
         <p className="totals__income">Income: {incomeTotals}</p>
-        <p className="totals__consumption">Comsumption: {consumptionTotals}</p>
+        <p className="totals__expense">Expense: {expenseTotals}</p>
         <p className="totals__sum">Total{totalCostSum}</p>
       </div>
     );

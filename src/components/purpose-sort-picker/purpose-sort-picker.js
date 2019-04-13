@@ -41,7 +41,7 @@ class PurposeSortPicker extends Component {
       purposeChecked: false
     });
   };
-  consumptionList = () => {
+  expenseList = () => {
     return [
       "home",
       "food",
@@ -57,14 +57,14 @@ class PurposeSortPicker extends Component {
     return ["salary", "business", "premium", "debt", "else"];
   };
   allPurposesList = () => {
-    return [...this.consumptionList(), ...this.incomeList()];
+    return [...this.expenseList(), ...this.incomeList()];
   };
 
   render() {
     console.log(this.props.items);
     const purposeNamesList =
-      this.props.operationType === "consumption"
-        ? this.consumptionList()
+      this.props.operationType === "expense"
+        ? this.expenseList()
         : this.props.operationType === "income"
         ? this.incomeList()
         : this.allPurposesList();

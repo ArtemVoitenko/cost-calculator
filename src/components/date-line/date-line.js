@@ -2,22 +2,24 @@ import React from "react";
 import "./date-line.scss";
 var moment = require("moment");
 
-const DateLine = () => {
-  const day = moment().format("D");
-  const dayOfWeek = moment().format("dddd");
+
+const DateLine = ({ toggleItemCreator, opened }) => {
+  const today = moment().format("DD");
+  const week = moment().format("dddd");
   const months = moment().format("MMMM YYYY");
+  const buttonText = opened ? "Close" : "  Add item +";
   return (
     <div className="date-line">
       <div className="date">
-        <p className="date__day">{day}</p>
+        <div className="date__day">{today}</div>
         <div className="date__additional">
-          <p className="date__week">{dayOfWeek}</p>
-          <p className="date__month">{months}</p>
+          <div className="date__week">{week}</div>
+          <div className="date__months">{months}</div>
         </div>
       </div>
-      <button className="add-btn">
-        <span className="add-btn__text d-none d-lg-block">new record</span>{" "}
-        <span className="add-btn__plus">+</span>
+      <button onClick={() => toggleItemCreator()} className="add-item-btn">
+        {buttonText}
+
       </button>
     </div>
   );

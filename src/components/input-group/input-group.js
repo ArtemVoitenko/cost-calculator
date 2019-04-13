@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Calendar from "react-calendar";
-import { addItem } from "../../actions";
+import { addItem, changeItemCreatorVisibility } from "../../actions";
 import { connect } from "react-redux";
 import PurposeList from "../purpose-list";
 import ActionImage from "../action-image";
@@ -25,10 +25,18 @@ class InputGroup extends Component {
   };
   state = {
     ...this.props.state,
-    actionType: "consumption",
+    actionType: "expense",
     actionPurpose: "other",
     calendarVisibility: false
   };
+  componentDidMount() {
+    if (!this.state.actionDate) {
+      this.setState({
+        actionDate: this.convertDate(new Date()),
+        dateMilliseconds: new Date().getTime()
+      });
+    }
+  }
   onNameInput = e => {
     const actionName = e.target.value;
     this.setState({
@@ -38,6 +46,10 @@ class InputGroup extends Component {
   onTypeChange = e => {
     const actionType = e.target.value;
     this.setState({ actionType });
+    if (actionType === "expense") {
+    } else {
+      this.setState({ actionPurpose: "else" });
+    }
   };
   onSumInput = e => {
     const sum = e.target.value;
@@ -146,12 +158,14 @@ class InputGroup extends Component {
     this.setState({
       actionName: "",
       actionSum: "",
-      actionType: "consumption",
-      actionDate: "",
+      actionType: "expense",
+      actionDate: this.convertDate(new Date()),
       actionDescription: "",
+      actionPurpose: "other",
       dateMilliseconds: new Date().getTime(),
       actionImages: []
     });
+    this.props.changeCreatorVisibility();
   };
 
   render() {
@@ -164,6 +178,7 @@ class InputGroup extends Component {
       actionDescription,
       actionImages = []
     } = this.state;
+
     const imageList = () => {
       return actionImages ? (
         <div>{this.renderImagesPreview(actionImages)}</div>
@@ -208,7 +223,7 @@ class InputGroup extends Component {
             onChange={this.onTypeChange}
             value={actionType}
           >
-            <option defaultValue="consumption">consumption</option>
+            <option defaultValue="expense">expense</option>
             <option value="income">income</option>
           </select>
           <div className="input-panel__calendar-wrapper">
@@ -226,6 +241,7 @@ class InputGroup extends Component {
           <PurposeList
             onPurposeChoose={this.onPurposeChoose}
             actionType={actionType}
+            purpose={this.state.actionPurpose}
           />
           <button type="button" onClick={this.fileInputImitation}>
             browse
@@ -266,6 +282,9 @@ const mapDispatchToProps = dispatch => {
   return {
     addItem: item => {
       dispatch(addItem(item));
+    },
+    changeCreatorVisibility: () => {
+      dispatch(changeItemCreatorVisibility());
     }
   };
 };

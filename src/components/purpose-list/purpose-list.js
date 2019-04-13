@@ -6,6 +6,13 @@ export default class PusposeList extends Component {
     purpose: "other",
     listVisibility: false
   };
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      this.setState({
+        purpose: this.props.purpose
+      });
+    }
+  }
   onOpenClick = () => {
     this.setState({
       listVisibility: !this.state.listVisibility
@@ -18,7 +25,7 @@ export default class PusposeList extends Component {
     });
     this.props.onPurposeChoose(purposeValue);
   };
-  consumptionList = () => {
+  expenseList = () => {
     return [
       "home",
       "food",
@@ -34,14 +41,13 @@ export default class PusposeList extends Component {
     return ["salary", "business", "premium", "debt", "else"];
   };
   allPurposesList = () => {
-    return [...this.consumptionList(), ...this.incomeList()];
+    return [...this.expenseList(), ...this.incomeList()];
   };
 
   render() {
-    console.log(this.allPurposesList());
     const purposeNamesList =
-      this.props.actionType === "consumption"
-        ? this.consumptionList()
+      this.props.actionType === "expense"
+        ? this.expenseList()
         : this.props.actionType === "income"
         ? this.incomeList()
         : this.allPurposesList();
