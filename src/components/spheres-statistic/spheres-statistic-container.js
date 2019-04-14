@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import SpheresStatistic from "./spheres-statistic";
 
 class SpheresStatisticContainer extends Component {
-  divideBySpheres = () => {
-    const { items } = this.props;
+  divideBySpheres = items => {
     const resultObject = {};
     for (let i = 0; i < items.length; i++) {
       if (!resultObject[items[i].actionPurpose]) {
@@ -19,9 +18,9 @@ class SpheresStatisticContainer extends Component {
     const { actionType } = this.props;
     const filterTypeData =
       actionType === "income"
-        ? this.filterIncomeValues()
+        ? this.divideBySpheres(this.filterIncomeValues())
         : actionType === "expense"
-        ? this.filterExpenseValues()
+        ? this.divideBySpheres(this.filterExpenseValues())
         : null;
     return actionType === "all" ? this.divideByTypes() : filterTypeData;
   };
@@ -32,21 +31,29 @@ class SpheresStatisticContainer extends Component {
   };
   divideByTypes = () => {
     return {
-      income: this.filterIncomeValues(),
-      expense: this.filterExpenseValues()
+      income: this.divideBySpheres(this.filterIncomeValues()),
+      expense: this.divideBySpheres(this.filterExpenseValues())
     };
   };
+
   filterExpenseValues = () => {
     return this.props.items.filter(item => {
       return item.actionType === "expense";
     });
   };
   renderStatisticSection() {
+    const { actionType } = this.props;
     const statisticComponent =
-      this.props.actionPurpose === "all" ? (
+      actionType === "all" ? (
         <div>
-          <SpheresStatistic data={this.divideByTypes.income} />
-          <SpheresStatistic data={this.divideByTypes.expense} />
+          <SpheresStatistic
+            title={actionType}
+            data={this.divideByTypes().income}
+          />
+          <SpheresStatistic
+            title={actionType}
+            data={this.divideByTypes().expense}
+          />
         </div>
       ) : (
         <SpheresStatistic data={this.createStatisticObject()} />

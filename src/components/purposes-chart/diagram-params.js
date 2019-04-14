@@ -1,8 +1,6 @@
 export const dataSource = data => {
   return {
     chart: {
-
-
       showpercentvalues: "1",
       defaultcenterlabel: "expense",
 
@@ -21,7 +19,7 @@ export const dataSource = data => {
         "<b>$percentValue</b> of our Android users are on <b>$label</b>",
 
       paletteColors:
-        "FFDB00,#FF207B,#0000FE,#00CFD5,#97F849,#C356EA,#FF8000,#00FFFF",
+        "#4EB6FB,FFDB00,#FF207B,#0000FE,#00CFD5,#97F849,#C356EA,#FF8000,#00FFFF",
       bgAlpha: "0",
       canvasBgAlpha: "0",
       showBorder: false,
