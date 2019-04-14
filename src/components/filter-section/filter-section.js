@@ -1,16 +1,17 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PeriodSortPicker from "../period-sort-picker";
 import SumSortPicker from "../sum-sort-picker";
 import PurposeSortPicker from "../purpose-sort-picker";
 import OperationTypeFilter from "../operation-type-filter";
+import "./filters-section.scss";
 const FilterSection = () => {
   return (
-    <Fragment>
+    <div className="filters-section">
       <PeriodSortPicker />
       <SumSortPicker />
       <PurposeSortPicker />
       <OperationTypeFilter />
-    </Fragment>
+    </div>
   );
 };
 export default FilterSection;

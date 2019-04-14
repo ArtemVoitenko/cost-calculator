@@ -152,7 +152,12 @@ textarea {
   font-weight: inherit;
   -webkit-appearance: none;
 }
-
+input {
+  display: inline;
+}
+label {
+  margin-bottom: 0;
+}
 button,
 select {
   text-transform: none;

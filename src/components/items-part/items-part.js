@@ -7,6 +7,7 @@ import "./items-part.scss";
 import FilterSection from "../filter-section";
 import { connect } from "react-redux";
 import { changeItemCreatorVisibility } from "../../actions";
+import Totals from "../totals";
 
 class ItemsPart extends Component {
   toggleItemCreator = () => {
@@ -22,7 +23,6 @@ class ItemsPart extends Component {
     );
 
     return (
-
       <div class="items-part">
         <DateLine
           toggleItemCreator={this.toggleItemCreator}
@@ -30,7 +30,7 @@ class ItemsPart extends Component {
         />
         {itemCreatorOrList}
         <FilterSection />
-
+        <Totals />
       </div>
     );
   }

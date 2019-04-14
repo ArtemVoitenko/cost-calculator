@@ -4,6 +4,7 @@ import Totals from "../totals";
 import PurposesChart from "../purposes-chart";
 import ItemInfo from "../item-info";
 import "./details-section.scss";
+import SpheresStatisticContainer from "../spheres-statistic/spheres-statistic-container";
 class DetailsSection extends Component {
   detailsBlock() {
     return this.props.actionId ? (
@@ -12,7 +13,7 @@ class DetailsSection extends Component {
       <div className="pie-chart">
         <React.Fragment>
           <PurposesChart />
-          <Totals />
+          <SpheresStatisticContainer />
         </React.Fragment>
       </div>
     );

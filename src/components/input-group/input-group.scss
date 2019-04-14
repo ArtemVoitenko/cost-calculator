@@ -1,12 +1,14 @@
 .input-panel {
   display: flex;
-  // align-items: center;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
   margin-bottom: 10px;
 }
 .input {
   position: relative;
   border: 1px solid rgba(#fff, 0.1);
-  border-bottom-color: #9cdcfe;
+  border-bottom-color: #4fb8fe;
   border-radius: 4px;
   padding: 10px 20px;
 
@@ -33,6 +35,9 @@
   &--error {
     border-bottom-color: red;
   }
+  &:not(:last-of-type) {
+    margin-right: 20px;
+  }
 }
 .input-panel__calendar-wrapper {
   position: relative;
@@ -55,4 +60,24 @@
   width: 30px;
   height: 30px;
   color: #9cdcfe;
+}
+.action-type__btn {
+  padding: 5px 7px;
+  border-radius: 4px;
+}
+.action-type {
+  &__icon {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    color: inherit;
+  }
+}
+.expense-btn.expense {
+  background-color: #ffff00;
+  color: #000000;
+}
+.rising-btn.income {
+  background-color: #4eb6fb;
+  color: #ffffff;
 }

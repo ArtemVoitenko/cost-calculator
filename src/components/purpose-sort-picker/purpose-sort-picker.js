@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PurposeDropdown from "../purpose-dropdown";
 import { changeItemsToShow, dispatchPurposeValue } from "../../actions";
 import PurposeList from "../purpose-list";
+import "./purpose-sort-picker.scss";
 
 class PurposeSortPicker extends Component {
   state = {
@@ -82,7 +83,7 @@ class PurposeSortPicker extends Component {
       </button>
     ) : null;
     return (
-      <div>
+      <div className="purpose-sort">
         <button onClick={this.togglePurposeSelect} type="button">
           purposeFilter
         </button>

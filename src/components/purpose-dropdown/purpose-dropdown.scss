@@ -1,6 +1,22 @@
+.purpose {
+  position: relative;
+}
 .purpose-dropdown {
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+
+  z-index: 3;
+
+  width: 500px;
+  padding: 25px;
+  border: 2px solid #4eb6fb;
+  border-radius: 10px;
+  background-color: #003740;
   list-style-type: none;
   &__item {
+    width: 33.333%;
     cursor: pointer;
     display: flex;
     align-items: center;

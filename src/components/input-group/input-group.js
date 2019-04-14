@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import PurposeList from "../purpose-list";
 import ActionImage from "../action-image";
 import "./input-group.scss";
+import Icon from "../icon/icon";
 
 class InputGroup extends Component {
   convertDate = date => {
@@ -237,7 +238,7 @@ class InputGroup extends Component {
               type="text"
             />
           </div>
-          <select
+          {/* <select
             name="actionType"
             id="actionTypeSelect"
             onChange={this.onTypeChange}
@@ -245,24 +246,38 @@ class InputGroup extends Component {
           >
             <option defaultValue="expense">expense</option>
             <option value="income">income</option>
-          </select>
-          <div className="input-panel__calendar-wrapper">
-            <button
-              className="btn-show-calendar"
-              onClick={this.showCalendar}
-              type="button"
-            >
-              {actionDate}
-            </button>
-            <div className={`input-panel__calendar ${isVisible}`}>
-              <Calendar onChange={this.onCalendarPick} />
+          </select> */}
+          <label className="action-type__label" onChange={this.onTypeChange}>
+            <input type="radio" name="actionType" value="expense" />
+            <div className={`action-type__btn expense-btn ${actionType} `}>
+              <Icon icon="decrease" iconClass="action-type__icon" />
             </div>
-          </div>
+          </label>
+          <label className="action-type__label " onChange={this.onTypeChange}>
+            <input type="radio" name="actionType" value="income" />
+            <div className={`action-type__btn rising-btn ${actionType} `}>
+              <Icon icon="rising" iconClass="action-type__icon" />
+            </div>
+          </label>
+
+          <div className="input-panel__calendar-wrapper" />
           <PurposeList
             onPurposeChoose={this.onPurposeChoose}
             actionType={actionType}
             purpose={this.state.actionPurpose}
           />
+        </div>
+        <div className="input-panel">
+          <button
+            className="btn-show-calendar"
+            onClick={this.showCalendar}
+            type="button"
+          >
+            {actionDate}
+          </button>
+          <div className={`input-panel__calendar ${isVisible}`}>
+            <Calendar onChange={this.onCalendarPick} />
+          </div>
           <button type="button" onClick={this.fileInputImitation}>
             browse
           </button>
@@ -276,18 +291,19 @@ class InputGroup extends Component {
           >
             ok
           </button>
-        </div>
-        <div className="input input--textarea">
-          <label class="input__label" htmlFor="description">
-            Description
-          </label>
 
-          <textarea
-            className="input__field"
-            value={actionDescription}
-            onChange={this.onDescriptionInput}
-            id="description"
-          />
+          <div className="input input--textarea">
+            <label class="input__label" htmlFor="description">
+              Description
+            </label>
+
+            <textarea
+              className="input__field"
+              value={actionDescription}
+              onChange={this.onDescriptionInput}
+              id="description"
+            />
+          </div>
         </div>
       </div>
     );
