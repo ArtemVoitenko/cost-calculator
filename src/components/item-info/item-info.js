@@ -10,16 +10,16 @@ class ItemInfo extends Component {
   }
   renderImagesPreview = images => {
     return images.map(image => {
-      return <img src={image} data-id="1" />;
+      return <img src={image} data-id="1" alt="" />;
     });
   };
   render() {
     const {
-      actionType,
+      // actionType,
       actionName,
-      actionPurpose,
-      actionSum,
-      actionDate,
+      // actionPurpose,
+      // actionSum,
+      // actionDate,
       actionDescription,
       actionImages
     } = this.itemInfoObject();

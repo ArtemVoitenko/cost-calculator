@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import fusioncharts from "fusioncharts";
 import charts from "fusioncharts/fusioncharts.charts";
@@ -17,7 +17,6 @@ class PurposesChart extends React.Component {
     );
 
     return (
-
       <div className="chart-wrapper">
         <ReactFusioncharts
           type="doughnut2d"
@@ -28,7 +27,6 @@ class PurposesChart extends React.Component {
           dataSource={dataSource(convertedData)}
         />
       </div>
-
     );
   }
 }

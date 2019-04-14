@@ -11,10 +11,10 @@ export default class CostListItem extends Component {
       editMode: true
     });
   };
-  componentDidUpdate(prevState) {
-    console.log(this.props.editItemId);
-    console.log(prevState.itemId);
-  }
+  // componentDidUpdate(prevState) {
+  //   console.log(this.props.editItemId);
+  //   console.log(prevState.itemId);
+  // }
 
   applyChange = () => {
     this.setState({
@@ -22,7 +22,6 @@ export default class CostListItem extends Component {
     });
   };
   render() {
-    // console.log(this.props.itemId);
     const { editMode } = this.state;
 
     if (editMode && this.props.editItemId === this.props.itemId) {

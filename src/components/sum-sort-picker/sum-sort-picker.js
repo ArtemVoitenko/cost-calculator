@@ -27,8 +27,7 @@ class SumSortPicker extends Component {
     const listByDecrease = unsortedList.sort((a, b) => {
       const first = parseFloat(a.actionSum);
       const second = parseFloat(b.actionSum);
-      console.log(`first:${first}
-      second: ${second}`);
+
       if (first < second) return 1;
       if (first > second) return -1;
     });

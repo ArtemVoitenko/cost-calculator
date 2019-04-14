@@ -16,7 +16,7 @@ export default class App extends Component {
         <div className="row">
           <div className="col-12 col-lg-6">
             <header className="header">
-              <a href="#" className="logo">
+              <a href="#e" className="logo">
                 MoneyGuard
               </a>
             </header>

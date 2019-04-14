@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PurposeDropdown from "../purpose-dropdown";
 import { changeItemsToShow, dispatchPurposeValue } from "../../actions";
-import PurposeList from "../purpose-list";
 import "./purpose-sort-picker.scss";
 
 class PurposeSortPicker extends Component {
@@ -13,8 +12,6 @@ class PurposeSortPicker extends Component {
   };
   onPurposeSelect = async purposeValue => {
     const { items, dispatchFilteredData, dispatchPurposeValue } = this.props;
-    console.log(purposeValue);
-    console.log(items);
     if (items) {
       const filteredData = items.filter(item => {
         return item.actionPurpose === purposeValue;
@@ -62,7 +59,6 @@ class PurposeSortPicker extends Component {
   };
 
   render() {
-    console.log(this.props.items);
     const purposeNamesList =
       this.props.operationType === "expense"
         ? this.expenseList()
@@ -75,8 +71,7 @@ class PurposeSortPicker extends Component {
         onPurposeSelect={this.onPurposeSelect}
         purposeNamesList={purposeNamesList}
       />
-    ) : // <PurposeList actionType={this.props.operationType} />
-    null;
+    ) : null;
     const purposeClearBtn = clearPurposeVisibility ? (
       <button onClick={this.onPurposeClear} type="button">
         clearPurpose

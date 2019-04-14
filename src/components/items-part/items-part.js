@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ItemCreator from "../item-creator";
 import CostList from "../cost-list";
-
 import DateLine from "../date-line";
 import "./items-part.scss";
 import FilterSection from "../filter-section";
@@ -11,7 +10,6 @@ import Totals from "../totals";
 
 class ItemsPart extends Component {
   toggleItemCreator = () => {
-    console.log(this.props);
     this.props.changeCreatorVisibility();
   };
 
@@ -23,7 +21,7 @@ class ItemsPart extends Component {
     );
 
     return (
-      <div class="items-part">
+      <div className="items-part">
         <DateLine
           toggleItemCreator={this.toggleItemCreator}
           opened={this.props.creatorVisibility}

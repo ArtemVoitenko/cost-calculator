@@ -22,7 +22,6 @@ class PeriodSortPicker extends Component {
     if (this.state.date) {
       const sortedList = items.filter(item => {
         if (purposeValue) {
-          console.log("its crush");
           return (
             this.sortByDate(item) &&
             this.sortByPurpose(item) &&

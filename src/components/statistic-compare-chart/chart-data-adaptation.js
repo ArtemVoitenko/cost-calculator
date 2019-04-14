@@ -1,6 +1,4 @@
-export const adaptCompareData = data => {
-  console.log(sortDataByDate(data));
-};
+export const adaptCompareData = data => {};
 const sortDataByDate = data => {
   const dataDump = [...data];
   dataDump.sort((a, b) => {

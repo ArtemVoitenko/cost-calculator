@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Totals from "../totals";
 import PurposesChart from "../purposes-chart";
 import ItemInfo from "../item-info";
 import "./details-section.scss";

@@ -1,6 +1,7 @@
 import React from "react";
 
 const SpheresStatistic = ({ data }) => {
-  return <div>SpheresStatistic</div>;
+  console.log(data);
+  return <div>{}</div>;
 };
 export default SpheresStatistic;
