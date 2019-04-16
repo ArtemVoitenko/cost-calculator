@@ -1,13 +1,22 @@
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: rgba(#4eb6fb, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: rgba(#4eb6fb, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #0e2459;
+}
 body {
   min-height: 100vh;
-  background-image: linear-gradient(
-    to right bottom,
-    #002936,
-    #00323d,
-    #003b42,
-    #044546,
-    #134e48
-  );
+  background-image: linear-gradient(to right bottom, #081431, #002936, #041f31);
+
   color: white;
   font-family: "Exo2";
 }

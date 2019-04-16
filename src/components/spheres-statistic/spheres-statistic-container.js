@@ -47,11 +47,11 @@ class SpheresStatisticContainer extends Component {
       actionType === "all" ? (
         <div>
           <SpheresStatistic
-            title={actionType}
+            title={"Income"}
             data={this.divideByTypes().income}
           />
           <SpheresStatistic
-            title={actionType}
+            title={"expense"}
             data={this.divideByTypes().expense}
           />
         </div>

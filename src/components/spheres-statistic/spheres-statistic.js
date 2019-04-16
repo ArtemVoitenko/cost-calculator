@@ -1,19 +1,28 @@
 import React from "react";
+import "./sphere-statistic.scss";
 
-const SpheresStatistic = ({ data }) => {
+const SpheresStatistic = ({ data, title }) => {
   const renderStatistic = () => {
     const keys = Object.keys(data);
     return keys.map(item => {
       return (
-        <div>
-          <div className={`purpose-image purpose-image--${item}`} />
-          {item}
-          <span>{data[item]}</span>
+        <div className="sphere-item">
+          <div
+            className={`purpose-image purpose-image--${item} sphere-item__img`}
+          />
+
+          <p className="sphere-item__title">{item}</p>
+          <p className="sphere-item__sum">{data[item]}</p>
         </div>
       );
     });
   };
-  console.log(data);
-  return <div>{renderStatistic()}</div>;
+
+  return (
+    <div>
+      <p className="sphere-statistic__title">{title}</p>
+      <div className="sphere-statistic">{renderStatistic()}</div>
+    </div>
+  );
 };
 export default SpheresStatistic;
