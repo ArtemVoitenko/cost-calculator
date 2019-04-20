@@ -162,6 +162,7 @@ class InputGroup extends Component {
       this.setState({ allInputsValid: true });
     }
   };
+
   onSubmit = async () => {
     await this.setState({
       actionId: this.generateId()
