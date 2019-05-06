@@ -1,0 +1,14 @@
+.notes-item {
+  padding: 20px;
+  padding-top: 60px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  width: 310px;
+  &__remove {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}

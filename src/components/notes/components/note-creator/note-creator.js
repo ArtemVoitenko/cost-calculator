@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { RadioGroup, Radio } from "react-radio-group";
+import "./note-creator.scss";
+import DictateCheckbox from "react-dictate-button";
 export default class NoteCreator extends Component {
   state = {
     title: "",
     description: "",
-    itemId: ""
+    itemId: "",
+    tempSpeech: "",
+    itemColor: "#4EC9B0"
   };
 
   onTitleInput = e => {
@@ -38,79 +42,99 @@ export default class NoteCreator extends Component {
   };
   addItemToList = () => {
     if (this.props.items) {
-      return [...this.props.items, this.state];
+      return [this.state, ...this.props.items];
     } else {
       return [this.state];
     }
   };
-  onItemAdd = e => {
+  onColorChanged = e => {
+    this.setState({
+      itemColor: e.target.value
+    });
+  };
+  getRecognition = async speech => {
+    await this.setState({
+      description: speech.result.transcript
+    });
+  };
+  showDictationProgress = speech => {
+    if (speech.results) {
+      this.setState({
+        tempSpeech: speech.results[0].transcript
+      });
+    }
+  };
+  onItemAdd = async e => {
     e.preventDefault();
-    this.generateId();
-    this.clearState();
-    this.props.onUpdateItemList(this.addItemToList());
+    await this.generateId();
+    if (this.state.title && this.state.description) {
+      await this.props.onUpdateItemList(this.addItemToList());
+      this.clearState();
+    } else {
+      console.log("заполните все поля");
+    }
 
-    console.log(localStorage.getItem("notes"));
+    // console.log(localStorage.getItem("notes"));
   };
 
   render() {
+    let colors = [
+      "grey",
+      "green",
+      "tomato",
+      "yellow",
+      "red",
+      "brown",
+      "#4EC9B0",
+      "#A0C3FF",
+      "#D02977"
+    ];
     return (
       <form className="notes-form" onSubmit={this.onItemAdd}>
+        <div>{this.state.tempSpeech}</div>
         <input
           type="text"
           className="notes-form__title"
           onChange={this.onTitleInput}
           value={this.state.title}
         />
+
+        <DictateCheckbox
+          onProgress={this.showDictationProgress}
+          onDictate={this.getRecognition}
+          lang="en-US"
+        >
+          start/stop
+        </DictateCheckbox>
         <textarea
           className="notes-form__text"
           onChange={this.onDescriptionInput}
           value={this.state.description}
         />
         <RadioGroup>
-          <input
-            type="text"
-            id="#808080"
-            value="#808080"
-            className="notes-form__radio"
-          />
-          <label htmlFor="#808080" className="notes-from__label" />
-          <input
-            type="text"
-            id="#008000"
-            value="#008000"
-            className="notes-form__radio"
-          />
-          <label htmlFor="#008000" className="notes-from__label" />
-          <input
-            type="text"
-            id="#FF6347"
-            value="#008000"
-            className="notes-form__radio"
-          />
-          <label htmlFor="#FF6347" className="notes-from__label" />
-          <input
-            type="text"
-            id="#FFFF00"
-            value="#FFFF00"
-            className="notes-form__radio"
-          />
-          <label htmlFor="#FFFF00" className="notes-from__label" />
-          <input
-            type="text"
-            id="#FF0000"
-            value="#FF0000"
-            className="notes-form__radio"
-          />
-          <label htmlFor="#FF0000" className="notes-from__label" />
-          <input
-            type="text"
-            id="#A52A2A"
-            value="#A52A2A"
-            className="notes-form__radio"
-          />
-          <label htmlFor="#A52A2A" className="notes-from__label" />
+          {colors.map((el, i) => {
+            return (
+              <div
+                className="colors__item"
+                key={i}
+                style={{ backgroundColor: el }}
+              >
+                <input
+                  className="radio-custom"
+                  id={el}
+                  type="radio"
+                  name="color"
+                  value={`${el}`}
+                  onChange={this.onColorChanged}
+                />
+                <label className="radio-custom-label" htmlFor={el} />
+              </div>
+            );
+          })}
         </RadioGroup>
-        <button className="notes-form__button">Add</button>
+        <button type="submit" className="notes-form__button">
+          Add
+        </button>
       </form>
     );
   }
