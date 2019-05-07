@@ -1,14 +1,44 @@
 .notes-item {
-  padding: 20px;
-  padding-top: 60px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  width: 310px;
+  position: relative;
+  // padding: 20px;
+  // padding-top: 60px;
+  // margin-bottom: 20px;
+  // width: 100%;
   color: #383838;
+
+  display: flex;
+  &__additional {
+    width: 65px;
+    height: 100%;
+    flex-shrink: 0;
+  }
+  &__main {
+    border-bottom: 2px solid #f1f1f1;
+    padding: 15px;
+    padding-left: 0;
+    padding-right: 30px;
+  }
+  &__title {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #423d44;
+    letter-spacing: 1px;
+    height: 20px;
+    overflow: hidden;
+  }
+  &__description {
+    height: 50px;
+    overflow: hidden;
+    color: #d3d1d7;
+    line-height: 25px;
+    text-overflow: ellipsis;
+  }
   &__remove {
+    color: black;
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 10px;
+    top: 10px;
     width: 20px;
     height: 20px;
   }

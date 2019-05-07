@@ -103,7 +103,7 @@ export default class NoteCreator extends Component {
           <div>{this.state.tempSpeech}</div>
           <input
             type="text"
-            className="notes-form__title"
+            className="notes-input"
             onChange={this.onTitleInput}
             value={this.state.title}
           />
@@ -116,7 +116,7 @@ export default class NoteCreator extends Component {
             start/stop
           </DictateCheckbox>
           <textarea
-            className="notes-form__text"
+            className="notes-input notes-input--textarea"
             onChange={this.onDescriptionInput}
             value={this.state.description}
           />

@@ -18,7 +18,7 @@ export default class NotesSearch extends Component {
   render() {
     return (
       <div className="search-wrapper">
-        <input type="text" onChange={this.onSearch} className="search-input" />
+        <input type="text" onChange={this.onSearch} className="notes-input" />
       </div>
     );
   }

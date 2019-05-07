@@ -1,17 +1,13 @@
 import React, { Component } from "react";
 import NotesItem from "../notes-item/notes-item";
-import Masonry from "react-masonry-component";
+
 import "./notes-grid.scss";
 
 export default class NotesGrid extends Component {
   render() {
-    const masonryOptions = {
-      gutter: 20
-    };
     const { items } = this.props;
     return (
       <div className="notes-grid">
-        {/* <Masonry options={masonryOptions}> */}
         {items.map(note => {
           return (
             <NotesItem
@@ -26,7 +22,6 @@ export default class NotesGrid extends Component {
             />
           );
         })}
-        {/* </Masonry> */}
       </div>
     );
   }

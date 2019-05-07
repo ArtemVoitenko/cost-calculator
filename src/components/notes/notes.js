@@ -6,7 +6,7 @@ import "./notes.scss";
 export default class Notes extends Component {
   state = {
     items: [],
-    notesCreatorVisibility: false
+    notesCreatorVisibility: true
   };
 
   componentDidMount() {
@@ -61,16 +61,23 @@ export default class Notes extends Component {
     ) : null;
     return (
       <Fragment>
-        <div className="notes__topline">
-          <NotesSearch
-            notes={this.getNotesFromStorage()}
-            onSearch={this.onSearch}
-          />
-          <button onClick={this.openNotesCreator} className="notes__create" />
-        </div>
-        {notesCreator}
+        <div className="notes-body">
+          <div className="notes-menu" />
+          <div className="notes-section">
+            <div className="notes-topline">
+              <NotesSearch
+                notes={this.getNotesFromStorage()}
+                onSearch={this.onSearch}
+              />
+              <button onClick={this.openNotesCreator} className="notes__create">
+                create note
+              </button>
+            </div>
+            {notesGrid}
+          </div>
 
-        {notesGrid}
+          {notesCreator}
+        </div>
       </Fragment>
     );
   }
