@@ -11,22 +11,22 @@ export default class NotesGrid extends Component {
     const { items } = this.props;
     return (
       <div className="notes-grid">
-        <Masonry options={masonryOptions}>
-          {items.map(note => {
-            return (
-              <NotesItem
-                key={note.itemId}
-                title={note.title}
-                description={note.description}
-                itemColor={note.itemColor}
-                itemId={note.itemId}
-                removeNote={noteId => {
-                  this.props.removeNote(noteId);
-                }}
-              />
-            );
-          })}
-        </Masonry>
+        {/* <Masonry options={masonryOptions}> */}
+        {items.map(note => {
+          return (
+            <NotesItem
+              key={note.itemId}
+              title={note.title}
+              description={note.description}
+              itemColor={note.itemColor}
+              itemId={note.itemId}
+              removeNote={noteId => {
+                this.props.removeNote(noteId);
+              }}
+            />
+          );
+        })}
+        {/* </Masonry> */}
       </div>
     );
   }

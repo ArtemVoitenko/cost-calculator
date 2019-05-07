@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./notes-search.scss";
 
 export default class NotesSearch extends Component {
   onSearch = e => {
@@ -17,7 +18,7 @@ export default class NotesSearch extends Component {
   render() {
     return (
       <div className="search-wrapper">
-        <input type="text" onChange={this.onSearch} className="input" />
+        <input type="text" onChange={this.onSearch} className="search-input" />
       </div>
     );
   }

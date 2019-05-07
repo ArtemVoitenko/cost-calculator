@@ -2,9 +2,11 @@ import React, { Component, Fragment } from "react";
 import NoteCreator from "./components/note-creator";
 import NotesGrid from "./components/notes-grid";
 import NotesSearch from "./components/notes-search/notes-search";
+import "./notes.scss";
 export default class Notes extends Component {
   state = {
-    items: []
+    items: [],
+    notesCreatorVisibility: false
   };
 
   componentDidMount() {
@@ -38,22 +40,36 @@ export default class Notes extends Component {
     ];
     this.onUpdateItemList(newNotesList);
   };
+  openNotesCreator = () => {
+    this.setState({ notesCreatorVisibility: true });
+  };
+  hideNotesCreator = () => {
+    this.setState({ notesCreatorVisibility: false });
+  };
 
   render() {
-    const notesGrid = this.state.items ? (
-      <NotesGrid items={this.state.items} removeNote={this.removeNote} />
+    const { items, notesCreatorVisibility } = this.state;
+    const notesGrid = items ? (
+      <NotesGrid items={items} removeNote={this.removeNote} />
+    ) : null;
+    const notesCreator = notesCreatorVisibility ? (
+      <NoteCreator
+        onUpdateItemList={this.onUpdateItemList}
+        hideNotesCreator={this.hideNotesCreator}
+        items={items}
+      />
     ) : null;
     return (
       <Fragment>
-        <NotesSearch
-          notes={this.getNotesFromStorage()}
-          onSearch={this.onSearch}
-        />
-        }
-        <NoteCreator
-          onUpdateItemList={this.onUpdateItemList}
-          items={this.state.items}
-        />
+        <div className="notes__topline">
+          <NotesSearch
+            notes={this.getNotesFromStorage()}
+            onSearch={this.onSearch}
+          />
+          <button onClick={this.openNotesCreator} className="notes__create" />
+        </div>
+        {notesCreator}
+
         {notesGrid}
       </Fragment>
     );
