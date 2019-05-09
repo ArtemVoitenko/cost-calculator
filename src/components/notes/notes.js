@@ -12,22 +12,31 @@ export default class Notes extends Component {
   };
 
   componentDidMount() {
-    this.getNotesFromStorage();
-    console.log("hello");
-    // this.setState({
-    //   items: this.getNotesFromStorage()
+    this.getNotesFromDb();
+
+    // const notesRef = database.ref("notes");
+    // notesRef.on("value", function(snapshot) {
+    //   this.getNotesFromStorage();
     // });
   }
-  getNotesFromStorage = () => {
+  getNotesFromDb = () => {
     const notesRef = database.ref("notes");
     notesRef.once("value").then(snapshot => {
-      this.setState({ items: Object.values(snapshot.val()) });
+      return this.setState({ items: Object.values(snapshot.val()) });
     });
-    console.log(this.state.items);
-    // console.log("hello");
-
-    // return database.ref("notes");
   };
+  getData = async () => {
+    const notesRef = database.ref("notes");
+    return notesRef
+      .once("value")
+      .then(snapshot => {
+        return Object.values(snapshot.val());
+      })
+      .then(result => {
+        return result;
+      });
+  };
+
   onUpdateItemList = async newItemList => {
     await this.setState({
       items: newItemList
@@ -40,16 +49,20 @@ export default class Notes extends Component {
     });
   };
   removeNote = noteId => {
-    const { items } = this.state;
-    const idxToRemove = items.findIndex(element => {
-      return element.itemId === noteId;
-    });
+    // const { items } = this.state;
+    // const idxToRemove = items.findIndex(element => {
+    //   return element.itemId === noteId;
+    // });
 
-    const newNotesList = [
-      ...items.slice(0, idxToRemove),
-      ...items.slice(idxToRemove + 1)
-    ];
-    this.onUpdateItemList(newNotesList);
+    // const newNotesList = [
+    //   ...items.slice(0, idxToRemove),
+    //   ...items.slice(idxToRemove + 1)
+    // ];
+    // this.onUpdateItemList(newNotesList);
+    console.log(noteId);
+    let noteRef = database.ref("notes/" + noteId);
+    noteRef.remove();
+    // database.ref(`notes/${noteId}`).remove();
   };
   openNotesCreator = () => {
     this.setState({ notesCreatorVisibility: true });
@@ -63,6 +76,7 @@ export default class Notes extends Component {
     });
   };
   render() {
+    this.getData();
     const { items, notesCreatorVisibility, editorState } = this.state;
     const notesGrid = items ? (
       <NotesGrid items={items} removeNote={this.removeNote} />
@@ -81,7 +95,7 @@ export default class Notes extends Component {
           <div className="notes-section">
             <div className="notes-topline">
               <NotesSearch
-                notes={this.getNotesFromStorage()}
+                notes={[...this.state.items]}
                 onSearch={this.onSearch}
               />
               <button onClick={this.openNotesCreator} className="notes__create">

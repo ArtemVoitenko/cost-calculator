@@ -17,13 +17,13 @@ export default class NotesGrid extends Component {
         {items.map(note => {
           return (
             <NotesItem
-              key={note.itemId}
-              title={note.title}
-              description={note.description}
-              itemColor={note.itemColor}
-              itemId={note.itemId}
-              removeNote={noteId => {
-                this.props.removeNote(noteId);
+              key={note.note_id}
+              note_title={note.note_title}
+              note_description={note.note_description}
+              note_color={note.note_itemColor}
+              note_id={note.note_id}
+              removeNote={note_id => {
+                this.props.removeNote(note_id);
               }}
             />
           );

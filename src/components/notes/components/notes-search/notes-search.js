@@ -6,16 +6,15 @@ export default class NotesSearch extends Component {
     const searchValue = e.target.value;
     console.log(this.props.notes);
     let filteredData = this.props.notes.filter(item => {
-      console.log(searchValue);
-      console.log(item.description.indexOf(searchValue));
       return (
-        item.description.indexOf(searchValue) > -1 ||
-        item.title.indexOf(searchValue) > -1
+        item.note_description.indexOf(searchValue) > -1 ||
+        item.note_title.indexOf(searchValue) > -1
       );
     });
     return this.props.onSearch(filteredData);
   };
   render() {
+    console.log(this.props.notes);
     return (
       <div className="search-wrapper">
         <input type="text" onChange={this.onSearch} className="notes-input" />
