@@ -2,7 +2,9 @@ import React, { Component, Fragment } from "react";
 import NoteCreator from "./components/note-creator";
 import NotesGrid from "./components/notes-grid";
 import NotesSearch from "./components/notes-search/notes-search";
+import { database } from "../../firebase";
 import "./notes.scss";
+import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 export default class Notes extends Component {
   state = {
     items: [],
@@ -10,12 +12,21 @@ export default class Notes extends Component {
   };
 
   componentDidMount() {
-    this.setState({
-      items: this.getNotesFromStorage()
-    });
+    this.getNotesFromStorage();
+    console.log("hello");
+    // this.setState({
+    //   items: this.getNotesFromStorage()
+    // });
   }
   getNotesFromStorage = () => {
-    return JSON.parse(localStorage.getItem("notes"));
+    const notesRef = database.ref("notes");
+    notesRef.once("value").then(snapshot => {
+      this.setState({ items: Object.values(snapshot.val()) });
+    });
+    console.log(this.state.items);
+    // console.log("hello");
+
+    // return database.ref("notes");
   };
   onUpdateItemList = async newItemList => {
     await this.setState({
@@ -46,9 +57,13 @@ export default class Notes extends Component {
   hideNotesCreator = () => {
     this.setState({ notesCreatorVisibility: false });
   };
-
+  onEditorStateChange = editorState => {
+    this.setState({
+      editorState
+    });
+  };
   render() {
-    const { items, notesCreatorVisibility } = this.state;
+    const { items, notesCreatorVisibility, editorState } = this.state;
     const notesGrid = items ? (
       <NotesGrid items={items} removeNote={this.removeNote} />
     ) : null;
@@ -75,7 +90,6 @@ export default class Notes extends Component {
             </div>
             {notesGrid}
           </div>
-
           {notesCreator}
         </div>
       </Fragment>

@@ -4,6 +4,12 @@ import NotesItem from "../notes-item/notes-item";
 import "./notes-grid.scss";
 
 export default class NotesGrid extends Component {
+  state = {
+    activeNoteId: ""
+  };
+  onActiveNote = noteId => {
+    this.setState({ activeNoteId: noteId });
+  };
   render() {
     const { items } = this.props;
     return (
