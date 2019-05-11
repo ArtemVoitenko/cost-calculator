@@ -3,18 +3,17 @@ import "./notes-search.scss";
 
 export default class NotesSearch extends Component {
   onSearch = e => {
-    const searchValue = e.target.value;
-    console.log(this.props.notes);
+    const searchValue = e.target.value.toLowerCase();
+
     let filteredData = this.props.notes.filter(item => {
       return (
-        item.note_description.indexOf(searchValue) > -1 ||
-        item.note_title.indexOf(searchValue) > -1
+        item.note_description.toLowerCase().indexOf(searchValue) > -1 ||
+        item.note_title.toLowerCase().indexOf(searchValue) > -1
       );
     });
     return this.props.onSearch(filteredData);
   };
   render() {
-    console.log(this.props.notes);
     return (
       <div className="search-wrapper">
         <input type="text" onChange={this.onSearch} className="notes-input" />

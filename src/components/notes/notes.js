@@ -8,6 +8,7 @@ import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 export default class Notes extends Component {
   state = {
     items: [],
+    searchItems: [],
     notesCreatorVisibility: true
   };
 
@@ -22,7 +23,10 @@ export default class Notes extends Component {
   getNotesFromDb = () => {
     const notesRef = database.ref("notes");
     notesRef.once("value").then(snapshot => {
-      return this.setState({ items: Object.values(snapshot.val()) });
+      return this.setState({
+        items: Object.values(snapshot.val()),
+        searchItems: Object.values(snapshot.val())
+      });
     });
   };
   getData = async () => {
@@ -45,7 +49,7 @@ export default class Notes extends Component {
   };
   onSearch = notes => {
     this.setState({
-      items: notes
+      searchItems: notes
     });
   };
   removeNote = noteId => {
@@ -77,9 +81,14 @@ export default class Notes extends Component {
   };
   render() {
     this.getData();
-    const { items, notesCreatorVisibility, editorState } = this.state;
+    const {
+      items,
+      notesCreatorVisibility,
+      searchItems,
+      editorState
+    } = this.state;
     const notesGrid = items ? (
-      <NotesGrid items={items} removeNote={this.removeNote} />
+      <NotesGrid items={searchItems} removeNote={this.removeNote} />
     ) : null;
     const notesCreator = notesCreatorVisibility ? (
       <NoteCreator
