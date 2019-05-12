@@ -1,22 +1,23 @@
 .notes-item {
   position: relative;
-  // padding: 20px;
-  // padding-top: 60px;
-  // margin-bottom: 20px;
-  // width: 100%;
   color: #383838;
-
   display: flex;
+  cursor: pointer;
+  &:hover {
+    background-color: #fdfdfd;
+  }
   &__additional {
     width: 65px;
     height: 100%;
     flex-shrink: 0;
   }
   &__main {
+    position: relative;
     border-bottom: 2px solid #f1f1f1;
     padding: 15px;
     padding-left: 0;
     padding-right: 30px;
+    flex-grow: 1;
   }
   &__title {
     margin-bottom: 15px;
@@ -35,11 +36,26 @@
     text-overflow: ellipsis;
   }
   &__remove {
-    color: black;
+    color: rgba(#5b1c71, 0.7);
     position: absolute;
     right: 10px;
     top: 10px;
     width: 20px;
-    height: 20px;
+    height: 25px;
+  }
+  &__decorator {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+  }
+  &__date {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: rgba(#5b1c71, 0.7);
+    font-weight: bold;
+    font-size: 14px;
   }
 }

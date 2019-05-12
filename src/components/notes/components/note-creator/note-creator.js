@@ -4,8 +4,10 @@ import "./note-creator.scss";
 import DictateCheckbox from "react-dictate-button";
 import NoteEditor from "../note-editor";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw } from "draft-js";
+import { EditorState, convertToRaw, ContentState } from "draft-js";
 import draftToHtml from "draftjs-to-html";
+import htmlToDraft from "html-to-draftjs";
+
 import { database } from "../../../../firebase";
 import { generateId } from "../../helpers";
 import NotesPalette from "../notes-palette/notes-palette";
@@ -19,7 +21,7 @@ export default class NoteCreator extends Component {
   //   itemColor: "#4EC9B0",
   //   editorState: EditorState.createEmpty()
   // };
-  state = this.props.itemId
+  state = this.props.activeNoteId
     ? {}
     : {
         note_title: "",
@@ -28,11 +30,45 @@ export default class NoteCreator extends Component {
         tempSpeech: "",
         note_color: "#4EC9B0",
         note_tag: "",
+        note_date: "",
         editorState: EditorState.createEmpty()
       };
+  convertHtmToDraft = htmlContent => {
+    const blocksFromHtml = htmlToDraft(htmlContent);
+    const { contentBlocks, entityMap } = blocksFromHtml;
+    const contentState = ContentState.createFromBlockArray(
+      contentBlocks,
+      entityMap
+    );
+    const editorState = EditorState.createWithContent(contentState);
+    return editorState;
+  };
+  componentDidUpdate(prevProps) {
+    if (this.props.activeNoteId !== prevProps.activeNoteId) {
+      const noteRef = database.ref(`notes/${this.props.activeNoteId}/`);
+      noteRef.once("value").then(snapshot => {
+        const res = snapshot.val();
+        console.log();
+        const htmlContent = this.convertHtmToDraft(res.note_content);
+        this.setState({
+          ...res,
+          editorState: htmlContent
+        });
+        console.log(snapshot.val());
+        // return this.setState({
+        //   editorState: Object.values(snapshot.val())
+        // });
+      });
+    }
+  }
 
   onEditorStateChange = editorState => {
     this.setState({ editorState });
+  };
+  setDate = () => {
+    this.setState({
+      note_date: Date.now()
+    });
   };
   setToDatabase() {
     const {
@@ -41,7 +77,8 @@ export default class NoteCreator extends Component {
       note_id,
       note_color,
       note_tag,
-      editorState
+      editorState,
+      note_date
     } = this.state;
     let editorHTMLContent = draftToHtml(
       convertToRaw(editorState.getCurrentContent())
@@ -53,7 +90,8 @@ export default class NoteCreator extends Component {
       note_title,
       note_description,
       note_tag,
-      note_color
+      note_color,
+      note_date
     });
   }
 
@@ -65,10 +103,10 @@ export default class NoteCreator extends Component {
       note_tag: "",
       tempSpeech: "",
       note_color: "#4EC9B0",
-      editorState: EditorState.createEmpty()
+      editorState: EditorState.createEmpty(),
+      note_date: ""
     });
   }
-
   onColorChanged = value => {
     this.setState({
       note_color: value
@@ -86,9 +124,11 @@ export default class NoteCreator extends Component {
     });
   };
 
-  onNoteApply = () => {
+  onNoteApply = async () => {
+    await this.setDate();
     this.setToDatabase();
     this.clearState();
+    this.props.reloadState();
   };
 
   render() {
@@ -104,35 +144,52 @@ export default class NoteCreator extends Component {
     return (
       <div>
         <div className="note-creator">
-          <input
-            type="text"
-            className="notes-input"
-            onChange={this.onTitleInput}
-            value={note_title}
-          />
-          <DictateCheckbox
-            onProgress={this.showDictationProgress}
-            onDictate={this.getRecognition}
-            lang="en-US"
-          >
-            start/stop
-          </DictateCheckbox>
-          <textarea
-            className="notes-input notes-input--textarea"
-            onChange={this.onDescriptionInput}
-            value={note_description}
-          />
-          <NotesPalette
-            onColorChanged={this.onColorChanged}
-            activeColor={note_color}
-          />
-          <Editor
-            editorState={editorState}
-            onEditorStateChange={this.onEditorStateChange}
-          />
-          <button className="note-creator__apply" onClick={this.onNoteApply}>
-            apply
-          </button>
+          <div className="note-creator__left">
+            <input
+              type="text"
+              className="notes-input"
+              onChange={this.onTitleInput}
+              value={note_title}
+            />
+            <DictateCheckbox
+              onProgress={this.showDictationProgress}
+              onDictate={this.getRecognition}
+              lang="en-US"
+            >
+              start/stop
+            </DictateCheckbox>
+            <textarea
+              className="notes-input notes-input--textarea"
+              onChange={this.onDescriptionInput}
+              value={note_description}
+            />
+            <NotesPalette
+              onColorChanged={this.onColorChanged}
+              activeColor={note_color}
+            />
+          </div>
+          <div className="note-creator__right">
+            <Editor
+              editorState={editorState}
+              onEditorStateChange={this.onEditorStateChange}
+              wrapperClassName="editor-wrapper"
+              editorClassName="editor"
+              toolbarClassName="editor-toolbar"
+              toolbar={{
+                inline: { inDropdown: true },
+                list: { inDropdown: true },
+                textAlign: { inDropdown: true },
+                link: { inDropdown: true },
+                history: { inDropdown: true },
+                image: {
+                  alt: { present: true, mandatory: true }
+                }
+              }}
+            />
+            <button className="note-creator__apply" onClick={this.onNoteApply}>
+              apply
+            </button>
+          </div>
         </div>
       </div>
     );

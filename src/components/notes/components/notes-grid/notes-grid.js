@@ -7,9 +7,9 @@ export default class NotesGrid extends Component {
   state = {
     activeNoteId: ""
   };
-  onActiveNote = noteId => {
-    this.setState({ activeNoteId: noteId });
-  };
+  // onActiveNote = note_id => {
+  //   this.props.editNote(note_id);
+  // };
   render() {
     const { items } = this.props;
     return (
@@ -19,11 +19,15 @@ export default class NotesGrid extends Component {
             <NotesItem
               key={note.note_id}
               note_title={note.note_title}
+              note_date={note.note_date}
               note_description={note.note_description}
-              note_color={note.note_itemColor}
+              note_color={note.note_color}
               note_id={note.note_id}
               removeNote={note_id => {
                 this.props.removeNote(note_id);
+              }}
+              onActiveNote={note_id => {
+                this.props.editNote(note_id);
               }}
             />
           );

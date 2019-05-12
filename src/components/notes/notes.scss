@@ -15,6 +15,11 @@ body {
   min-height: 100vh;
   height: 100%;
 }
+@media (max-width: 768px) {
+  .notes-body {
+    flex-direction: column;
+  }
+}
 .notes-menu {
   width: 200px;
   min-height: 100%;
@@ -31,23 +36,23 @@ body {
   width: 380px;
   border-right: 2px solid #f1f1f1;
 }
-.notes-topline {
-  padding-bottom: 20px;
-  border-bottom: 2px solid #f1f1f1;
-}
+
 .notes-input {
   display: block;
-  padding-left: 20px;
-  padding-right: 20px;
-  height: 45px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 35px;
   width: 300px;
   margin: 0 auto;
-  margin-bottom: 30px;
-  background-color: #ffffff;
+
+  background-color: #fbfbfb;
   border-radius: 4px;
   color: grey;
-  box-shadow: 10px 10px 14px 1px rgba(00, 00, 00, 0.2);
+  box-shadow: 0 5px 7px 1px rgba(00, 00, 00, 0.2);
+  // border: 2px solid #f1f1f1;
   &--textarea {
+    padding-top: 10px;
+    padding-bottom: 10px;
     height: 150px;
   }
 }

@@ -1,3 +1,38 @@
+.note-creator {
+  padding: 15px 10px;
+  display: flex;
+  min-height: 100%;
+  &__left {
+    padding-right: 10px;
+    min-height: 100%;
+    border-right: 2px solid #f1f1f1;
+  }
+  &__right {
+    padding-right: 10px;
+    min-height: 100%;
+    padding-bottom: 50px;
+  }
+  &__apply {
+    padding: 10px 20px;
+    background-color: #48206a;
+    color: #ffffff;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+@media (max-width: 768px) {
+  .note-creator {
+    flex-direction: column;
+    &__right {
+      flex-direction: column;
+    }
+  }
+}
 .colors__item {
   width: 20px;
   height: 20px;
@@ -49,4 +84,10 @@
 .notes-form__title {
   border: 1px solid #000;
   background-color: #ffffff;
+}
+.editor-wrapper {
+  background-color: #fff;
+  min-height: 100%;
+}
+.editor {
 }

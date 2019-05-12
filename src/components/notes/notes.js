@@ -9,16 +9,13 @@ export default class Notes extends Component {
   state = {
     items: [],
     searchItems: [],
-    notesCreatorVisibility: true
+    notesCreatorVisibility: true,
+    editorState: "",
+    activeNoteId: ""
   };
 
   componentDidMount() {
     this.getNotesFromDb();
-
-    // const notesRef = database.ref("notes");
-    // notesRef.on("value", function(snapshot) {
-    //   this.getNotesFromStorage();
-    // });
   }
   getNotesFromDb = () => {
     const notesRef = database.ref("notes");
@@ -29,44 +26,16 @@ export default class Notes extends Component {
       });
     });
   };
-  getData = async () => {
-    const notesRef = database.ref("notes");
-    return notesRef
-      .once("value")
-      .then(snapshot => {
-        return Object.values(snapshot.val());
-      })
-      .then(result => {
-        return result;
-      });
-  };
 
-  onUpdateItemList = async newItemList => {
-    await this.setState({
-      items: newItemList
-    });
-    await localStorage.setItem("notes", JSON.stringify(this.state.items));
-  };
   onSearch = notes => {
     this.setState({
       searchItems: notes
     });
   };
   removeNote = noteId => {
-    // const { items } = this.state;
-    // const idxToRemove = items.findIndex(element => {
-    //   return element.itemId === noteId;
-    // });
-
-    // const newNotesList = [
-    //   ...items.slice(0, idxToRemove),
-    //   ...items.slice(idxToRemove + 1)
-    // ];
-    // this.onUpdateItemList(newNotesList);
-    console.log(noteId);
     let noteRef = database.ref("notes/" + noteId);
     noteRef.remove();
-    // database.ref(`notes/${noteId}`).remove();
+    this.getNotesFromDb();
   };
   openNotesCreator = () => {
     this.setState({ notesCreatorVisibility: true });
@@ -74,25 +43,40 @@ export default class Notes extends Component {
   hideNotesCreator = () => {
     this.setState({ notesCreatorVisibility: false });
   };
-  onEditorStateChange = editorState => {
-    this.setState({
-      editorState
-    });
+  // onEditorStateChange = editorState => {
+  //   this.setState({
+  //     editorState
+  //   });
+  // };
+  editNote = note_id => {
+    // const noteRef = database.ref(`notes/${note_id}/`);
+    // noteRef.once("value").then(snapshot => {
+    //   return this.setState({
+    //     editorState: Object.values(snapshot.val())
+    //   });
+    // });
+    this.setState({ activeNoteId: note_id });
   };
   render() {
-    this.getData();
     const {
       items,
       notesCreatorVisibility,
       searchItems,
-      editorState
+      editorState,
+      activeNoteId
     } = this.state;
     const notesGrid = items ? (
-      <NotesGrid items={searchItems} removeNote={this.removeNote} />
+      <NotesGrid
+        items={searchItems}
+        removeNote={this.removeNote}
+        editNote={this.editNote}
+      />
     ) : null;
     const notesCreator = notesCreatorVisibility ? (
       <NoteCreator
-        onUpdateItemList={this.onUpdateItemList}
+        // editorState
+        activeNoteId={activeNoteId}
+        reloadState={this.getNotesFromDb}
         hideNotesCreator={this.hideNotesCreator}
         items={items}
       />
@@ -107,9 +91,6 @@ export default class Notes extends Component {
                 notes={[...this.state.items]}
                 onSearch={this.onSearch}
               />
-              <button onClick={this.openNotesCreator} className="notes__create">
-                create note
-              </button>
             </div>
             {notesGrid}
           </div>
