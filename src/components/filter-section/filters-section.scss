@@ -1,3 +1,42 @@
 .filters-section {
   margin-top: auto;
 }
+.sort-section {
+  &__period {
+  }
+}
+.purpose-sort {
+  position: relative;
+}
+.filter-purpose-icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+.clear-purpose-icon {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  color: #eb3941;
+}
+.clear-purpose-btn {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+.filters-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.operation-filter__btn {
+  padding: 5px 10px;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  margin-right: 5px;
+  &.active {
+    background-color: #eb3941;
+    border-color: #eb3941;
+  }
+}

@@ -17,7 +17,13 @@ class ItemsPart extends Component {
     const itemCreatorOrList = this.props.creatorVisibility ? (
       <ItemCreator />
     ) : (
-      <CostList />
+      <div className="items-wrapper">
+        <CostList />
+        <div>
+          <FilterSection />
+          <Totals />
+        </div>
+      </div>
     );
 
     return (
@@ -27,8 +33,6 @@ class ItemsPart extends Component {
           opened={this.props.creatorVisibility}
         />
         {itemCreatorOrList}
-        <FilterSection />
-        <Totals />
       </div>
     );
   }

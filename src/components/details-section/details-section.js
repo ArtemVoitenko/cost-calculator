@@ -9,7 +9,7 @@ class DetailsSection extends Component {
     return this.props.actionId ? (
       <ItemInfo />
     ) : (
-      <div className="pie-chart">
+      <div className="details-section">
         <React.Fragment>
           <PurposesChart />
           <SpheresStatisticContainer />

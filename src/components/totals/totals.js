@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import "./totals.scss";
 
 class Totals extends Component {
   state = {
@@ -45,9 +46,15 @@ class Totals extends Component {
     const { expenseTotals, incomeTotals, totalCostSum } = this.state;
     return (
       <div className="totals">
-        <p className="totals__income">Income: {incomeTotals}</p>
-        <p className="totals__expense">Expense: {expenseTotals}</p>
-        <p className="totals__sum">Total{totalCostSum}</p>
+        <p>
+          Income: <span className="totals__income">{incomeTotals}</span>
+        </p>
+        <p>
+          Expense: <span className="totals__expense">{expenseTotals}</span>
+        </p>
+        <p>
+          Total: <span className="totals__sum">{totalCostSum}</span>
+        </p>
       </div>
     );
   }

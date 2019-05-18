@@ -20,12 +20,7 @@ const NotesItem = ({
   // const creationTime = "";
   console.log(note_color);
   return (
-    <div
-      onClick={() => {
-        onActiveNote(note_id);
-      }}
-      className="notes-item"
-    >
+    <div className="notes-item">
       <div className="notes-item__additional">
         <div className="notes-item__date">{creationTime}</div>
       </div>
@@ -38,7 +33,14 @@ const NotesItem = ({
         >
           <Icon icon="delete" iconClass="notes-item__icon" />
         </button>
-        <p className="notes-item__title">{note_title}</p>
+        <p
+          className="notes-item__title"
+          onClick={() => {
+            onActiveNote(note_id);
+          }}
+        >
+          {note_title}
+        </p>
         <p className="notes-item__description">{note_description}</p>
         <div
           style={{ backgroundColor: note_color }}

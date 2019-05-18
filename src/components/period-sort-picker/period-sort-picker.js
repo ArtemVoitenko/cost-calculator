@@ -83,9 +83,6 @@ class PeriodSortPicker extends Component {
     return (
       <div className="sort-section">
         <div className="sort-section__period">
-          <button className="sort-section__btn" type="button">
-            sort by period
-          </button>
           <DateRangePicker
             showLeadingZeros={true}
             onChange={this.onChange}

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@weknow/react-bubble-chart-d3": "^1.0.12",
     "@wojtekmaj/react-daterange-picker": "^2.0.1",
     "calendar": "^0.1.0",
     "draft-js": "^0.10.5",

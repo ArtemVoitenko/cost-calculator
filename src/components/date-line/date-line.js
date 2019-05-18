@@ -2,7 +2,6 @@ import React from "react";
 import "./date-line.scss";
 var moment = require("moment");
 
-
 const DateLine = ({ toggleItemCreator, opened }) => {
   const today = moment().format("DD");
   const week = moment().format("dddd");
@@ -19,7 +18,6 @@ const DateLine = ({ toggleItemCreator, opened }) => {
       </div>
       <button onClick={() => toggleItemCreator()} className="add-item-btn">
         {buttonText}
-
       </button>
     </div>
   );

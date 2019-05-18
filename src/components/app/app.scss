@@ -75,3 +75,43 @@ body {
 .react-calendar__month-view__weekdays {
   background-color: #013e43;
 }
+.react-daterange-picker {
+  &__wrapper {
+    border: 1px solid #9cdcfe !important;
+    padding: 5px;
+    border-radius: 4px;
+  }
+  &__button {
+    svg {
+      stroke: #fff;
+    }
+  }
+}
+.react-calendar {
+  background-color: #003a41 !important;
+  button {
+    &:hover {
+      background-color: #081532 !important;
+    }
+  }
+  &__tile {
+    &--active {
+      background-color: #4fb8fe !important;
+    }
+  }
+  &__navigation__label,
+  &__navigation__arrow {
+    &:hover {
+      background-color: #081532 !important;
+    }
+  }
+}
+.title {
+  font-size: 16px;
+  text-transform: uppercase;
+  padding-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  background-color: rgba(#fff, 0.07);
+}

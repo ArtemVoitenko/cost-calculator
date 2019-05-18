@@ -7,10 +7,13 @@ import "./filters-section.scss";
 const FilterSection = () => {
   return (
     <div className="filters-section">
-      <PeriodSortPicker />
-      <SumSortPicker />
-      <PurposeSortPicker />
-      <OperationTypeFilter />
+      <p className="sphere-statistic__title filters-title">Filters</p>
+      <div className="filters-wrapper">
+        <PeriodSortPicker />
+        <OperationTypeFilter />
+        <PurposeSortPicker />
+      </div>
+      <div className="filters-wrapper">{/* <SumSortPicker /> */}</div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PurposeDropdown from "../purpose-dropdown";
 import { changeItemsToShow, dispatchPurposeValue } from "../../actions";
 import "./purpose-sort-picker.scss";
+import Icon from "../icon";
 
 class PurposeSortPicker extends Component {
   state = {
@@ -73,14 +74,22 @@ class PurposeSortPicker extends Component {
       />
     ) : null;
     const purposeClearBtn = clearPurposeVisibility ? (
-      <button onClick={this.onPurposeClear} type="button">
-        clearPurpose
+      <button
+        className="clear-purpose-btn"
+        onClick={this.onPurposeClear}
+        type="button"
+      >
+        <Icon icon="close" iconClass="clear-purpose-icon" />
       </button>
     ) : null;
     return (
       <div className="purpose-sort">
-        <button onClick={this.togglePurposeSelect} type="button">
-          purposeFilter
+        <button
+          className="filter-purpose-btn"
+          onClick={this.togglePurposeSelect}
+          type="button"
+        >
+          <Icon icon="purposes" iconClass="filter-purpose-icon" />
         </button>
         {purposeSelect}
         {purposeClearBtn}

@@ -103,7 +103,12 @@ class InputGroup extends Component {
     }
   };
   fileInputImitation = e => {
-    e.target.nextSibling.click();
+    let target = e.target;
+    console.log(target.tagName);
+    while (target.tagName != "BUTTON") {
+      target = target.parentNode;
+    }
+    target.nextSibling.click();
   };
   onImageRemove = idx => {
     this.setState(({ actionImages }) => {
@@ -202,7 +207,9 @@ class InputGroup extends Component {
 
     const imageList = () => {
       return actionImages ? (
-        <div>{this.renderImagesPreview(actionImages)}</div>
+        <div className="image-list">
+          {this.renderImagesPreview(actionImages)}
+        </div>
       ) : null;
     };
     const sumInputClass = !actionSum ? "input--error" : "";
@@ -215,22 +222,16 @@ class InputGroup extends Component {
       <div>
         <div className="input-panel">
           <div className={`input ${nameInputClass}`}>
-            <label class="input__label" htmlFor="title">
-              Record
-            </label>
             <input
               className="input__field"
               onChange={this.onNameInput}
               value={actionName}
-              placeholder="type header"
+              placeholder="Record text..."
               type="text"
               id="title"
             />
           </div>
           <div className={`input ${sumInputClass}`}>
-            <label class="input__label" htmlFor="sum">
-              Sum
-            </label>
             <input
               className="input__field"
               onChange={this.onSumInput}
@@ -269,42 +270,45 @@ class InputGroup extends Component {
           />
         </div>
         <div className="input-panel">
-          <button
-            className="btn-show-calendar"
-            onClick={this.showCalendar}
-            type="button"
-          >
-            {actionDate}
-          </button>
-          <div className={`input-panel__calendar ${isVisible}`}>
-            <Calendar onChange={this.onCalendarPick} />
-          </div>
-          <button type="button" onClick={this.fileInputImitation}>
-            browse
-          </button>
-          <input type="file" hidden onChange={this.addImages} />
-
-          {imageList()}
-          <button
-            className="input-panel__submit"
-            type="button"
-            onClick={method}
-          >
-            ok
-          </button>
-
-          <div className="input input--textarea">
-            <label class="input__label" htmlFor="description">
-              Description
-            </label>
-
+          <div className="input input--textarea description-field">
             <textarea
+              placeholder="Description"
               className="input__field"
               value={actionDescription}
               onChange={this.onDescriptionInput}
               id="description"
             />
           </div>
+
+          {imageList()}
+          <button
+            className="btn-show-calendar"
+            onClick={this.showCalendar}
+            type="button"
+          >
+            <Icon icon="calendar" iconClass="picture-icon" />
+            {actionDate}
+          </button>
+          <div className={`input-panel__calendar ${isVisible}`}>
+            <Calendar onChange={this.onCalendarPick} />
+          </div>
+
+          <button
+            className="add-photo-btn"
+            type="button"
+            onClick={this.fileInputImitation}
+          >
+            <Icon icon="picture" iconClass="picture-icon" />
+          </button>
+          <input type="file" hidden onChange={this.addImages} />
+
+          <button
+            className="input-panel__submit"
+            type="button"
+            onClick={method}
+          >
+            <Icon icon="confirmation" iconClass="action-type__icon" />
+          </button>
         </div>
       </div>
     );

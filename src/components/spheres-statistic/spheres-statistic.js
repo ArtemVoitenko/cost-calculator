@@ -19,7 +19,7 @@ const SpheresStatistic = ({ data, title }) => {
   };
 
   return (
-    <div>
+    <div className="sphere-statistic__row">
       <p className="sphere-statistic__title">{title}</p>
       <div className="sphere-statistic">{renderStatistic()}</div>
     </div>

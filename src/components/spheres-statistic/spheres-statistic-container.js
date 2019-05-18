@@ -45,7 +45,7 @@ class SpheresStatisticContainer extends Component {
     const { actionType } = this.props;
     const statisticComponent =
       actionType === "all" ? (
-        <div>
+        <div className="sphere-statistic__wrapper">
           <SpheresStatistic
             title={"Income"}
             data={this.divideByTypes().income}

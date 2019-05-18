@@ -12,6 +12,9 @@
     background-color: rgba(#fff, 0.07);
     // border-radius: 10px;
   }
+  &__wrapper {
+    margin-top: auto;
+  }
 }
 .sphere-item {
   display: flex;

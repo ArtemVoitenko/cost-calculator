@@ -1,4 +1,11 @@
-.pie-chart {
-  position: relative;
-  height: 500px;
+.details-section {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-height: 100vh;
+}
+.chart-wrapper {
+  max-height: 50vh;
+  height: 100%;
+  flex-grow: 1;
 }

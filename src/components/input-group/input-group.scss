@@ -1,9 +1,23 @@
 .input-panel {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   margin-bottom: 10px;
+  &__calendar {
+    position: absolute;
+    top: 20px;
+    z-index: 3;
+  }
+  &__submit {
+    padding: 5px 20px;
+    background-color: #4fb8fe;
+    border-radius: 4px;
+    &:hover {
+      background-color: darken(#4fb8fe, 10%);
+    }
+  }
 }
 .input {
   position: relative;
@@ -15,6 +29,7 @@
   &--textarea {
     width: 100%;
     height: 80px;
+    margin-right: 0 !important;
   }
   &__field {
     width: 100%;
@@ -45,7 +60,7 @@
 }
 .btn-show-calendar {
   display: flex;
-  flex-grow: 1;
+
   align-items: center;
 
   height: 100%;
@@ -53,6 +68,7 @@
   border: 1px solid #9cdcfe;
   border-radius: 4px;
   color: #fff;
+  padding: 3px 10px;
 }
 .calendar-icon {
   display: inline-block;
@@ -64,6 +80,7 @@
 .action-type__btn {
   padding: 5px 7px;
   border-radius: 4px;
+  cursor: pointer;
 }
 .action-type {
   &__icon {
@@ -80,4 +97,50 @@
 .rising-btn.income {
   background-color: #4eb6fb;
   color: #ffffff;
+}
+.image-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  width: 100%;
+
+  &__item {
+    position: relative;
+    width: 20%;
+    padding: 0 2.5% 20px 0;
+  }
+  &__img {
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+  }
+  &__remove {
+    position: absolute;
+    top: -5px;
+    right: 10px;
+  }
+  &__icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    color: #eb3941;
+    &:hover {
+      color: darken(#eb3941, 30%);
+    }
+  }
+}
+.description-field {
+  margin-bottom: 20px;
+}
+.add-photo-btn {
+  margin-left: auto;
+  margin-right: 20px;
+  padding: 3px 5px;
+  border: 1px solid #9cdcfe;
+  border-radius: 4px;
+}
+.picture-icon {
+  display: block;
+  width: 40px;
+  height: 30px;
 }

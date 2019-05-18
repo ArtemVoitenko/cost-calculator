@@ -48,7 +48,7 @@ class ItemInfo extends Component {
             <p className="item-header__time">{getTime()}</p>
           </div>
         </div>
-        <p className="item-info__title">description</p>
+        <p className="title">description</p>
         <div className="item-info__description">{actionDescription}</div>
         <div className="item-finance">
           <div className="item-finance__sum">
