@@ -8,12 +8,12 @@ class exprensesBubleChart extends Component {
     return (
       <BubbleChart
         graph={{
-          zoom: 1.1,
-          offsetX: -0.05,
-          offsetY: -0.01
+          zoom: 0.8
+          // offsetX: -0.05,
+          // offsetY: -0.01
         }}
         width={1000}
-        height={800}
+        height={600}
         padding={0} // optional value, number that set the padding between bubbles
         showLegend={true} // optional value, pass false to disable the legend.
         legendPercentage={20} // number that represent the % of with that legend going to use.

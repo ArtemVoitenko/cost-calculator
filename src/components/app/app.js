@@ -1,28 +1,24 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import "./app.scss";
 
 import "../../fonts/fonts.scss";
 import "../../styles/reset.scss";
 
-import ItemsPart from "../items-part/items-part";
-
-import DetailsSection from "../details-section/details-section";
+import FinanceApp from "../finance-app";
 import NoteApp from "../notes/notes";
-import ExpensesBubleChart from "../buble-chart";
 
+import { Route, Link } from "react-router-dom";
 export default class App extends Component {
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-12 col-lg-6">
-            <ItemsPart />
-          </div>
-          <div className="col-12 col-lg-6">{<DetailsSection />}</div>
-        </div>
-        <div className="bubble">{/* <ExpensesBubleChart /> */}</div>
-      </div>
+      <Fragment>
+        <Link to="/NoteApp">NoteApp</Link>
+        <Link to="/FinanceApp">NoteApp</Link>
+        <Route path="/NoteApp" component={NoteApp} />
+        <Route path="/FinanceApp" component={FinanceApp} />
+      </Fragment>
+
       // <NoteApp />
     );
   }
