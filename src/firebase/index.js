@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/storage";
 import "firebase/database";
+import "firebase/auth";
 var firebaseConfig = {
   apiKey: "AIzaSyAxT3zizxtTPrD3Srw1VeLH1_WdBYbLX98",
   authDomain: "diplomaproject-ee019.firebaseapp.com",
@@ -14,4 +15,5 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const storage = firebase.storage();
 const database = firebase.database();
+const auth = firebase.auth();
 export { storage, database, firebase as default };

@@ -62,3 +62,31 @@ export const changeItemView = itemId => {
     payload: itemId
   };
 };
+export const submit = weather => {
+  return {
+    type: "SUBMIT_INPUT",
+    payload: weather
+  };
+};
+export const autoWeather = weather => {
+  return {
+    type: "AUTO_WEATHER",
+    payload: weather
+  };
+};
+export const getCity = city => {
+  return {
+    type: "GET_CITY",
+    payload: city
+  };
+};
+export const setIncorrectCity = () => {
+  return {
+    type: "INCORRECT_CITY_INPUT"
+  };
+};
+export const setCorrectCity = () => {
+  return {
+    type: "CORRECT_CITY_INPUT"
+  };
+};
