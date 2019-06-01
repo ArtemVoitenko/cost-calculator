@@ -8,7 +8,11 @@ const initialState = {
   operationType: "all",
   actionId: "",
   itemCreatorVisibility: false,
-  itemEditId: ""
+  itemEditId: "",
+  actualWeather: "",
+  loading: true,
+  city: "",
+  isCorrectCity: true
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -83,6 +87,38 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         itemEditId: action.payload
+      };
+    }
+    case "SUBMIT_INPUT": {
+      return {
+        ...state,
+        actualWeather: action.payload
+      };
+    }
+    case "AUTO_WEATHER": {
+      return {
+        ...state,
+        actualWeather: action.payload,
+        loading: false
+      };
+    }
+    case "GET_CITY": {
+      console.log("reducer");
+      return {
+        ...state,
+        city: action.payload
+      };
+    }
+    case "INCORRECT_CITY_INPUT": {
+      return {
+        ...state,
+        isCorrectCity: false
+      };
+    }
+    case "CORRECT_CITY_INPUT": {
+      return {
+        ...state,
+        isCorrectCity: true
       };
     }
     default: {

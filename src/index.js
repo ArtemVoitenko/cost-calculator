@@ -13,6 +13,7 @@ import firebase from "./firebase";
 import FinanceApp from "./components/finance-app";
 import { Login } from "./components/auth/Login";
 import { Register } from "./components/auth/Register";
+import WeatherApp from "./components/weather-app";
 JavascriptTimeAgo.locale(en);
 class Root extends Component {
   componentDidMount() {
@@ -34,6 +35,7 @@ class Root extends Component {
             <Route path="/Login" component={Login} />
             <Route path="/FinanceApp" component={FinanceApp} />
             <Route path="/App" component={App} />
+            <Route path="/WeatherForecast" component={WeatherApp} />
           </Switch>
         </ErrorBoundry>
       </Provider>
