@@ -61,8 +61,12 @@ class ItemInfo extends Component {
           </div>
 
           <div className="item-finance__purpose">
+            <span className="item-finance__purpose-title">
+              {" "}
+              {actionPurpose}
+            </span>
+
             <div className={`purpose-image purpose-image--${actionPurpose}`} />
-            {actionPurpose}
           </div>
         </div>
 

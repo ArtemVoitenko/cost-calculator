@@ -5,6 +5,7 @@ import NotesSearch from "./components/notes-search/notes-search";
 import { database } from "../../firebase";
 import "./notes.scss";
 import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import Icon from "../icon";
 export default class Notes extends Component {
   state = {
     items: [],
@@ -84,7 +85,12 @@ export default class Notes extends Component {
     return (
       <Fragment>
         <div className="notes-body">
-          <div className="notes-menu" />
+          <div className="notes-menu">
+            <Icon icon="note" iconClass="note-icon" />
+            <ul className="tag-list">
+              <li className="tag-list__item">#Recipes</li>
+            </ul>
+          </div>
           <div className="notes-section">
             <div className="notes-topline">
               <NotesSearch

@@ -15,6 +15,7 @@
   min-height: 100vh;
   height: 100%;
   background-color: #dedede;
+  color: #423d44;
 }
 @media (max-width: 768px) {
   .notes-body {
@@ -43,7 +44,7 @@
   padding-left: 10px;
   padding-right: 10px;
   height: 35px;
-  width: 300px;
+  width: 280px;
   margin: 0 auto;
 
   background-color: #fbfbfb;
@@ -55,5 +56,52 @@
     padding-top: 10px;
     padding-bottom: 10px;
     height: 150px;
+  }
+}
+.public-DraftEditor-content {
+  // background-color: #ffffff !important;
+  border: 2px solid #f1f1f1;
+  max-height: 500px;
+  height: 500px !important;
+  width: 580px !important;
+  overflow: auto;
+  color: #000 !important;
+  padding: 20px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.rdw-editor-toolbar.editor-toolbar {
+  background: transparent !important;
+  border: 2px solid #f1f1f1 !important;
+  border-radius: 4px !important;
+  width: 580px !important;
+  box-sizing: border-box;
+}
+.rdw-dropdown-wrapper,
+.rdw-option-wrapper {
+  background: transparent !important;
+  border-color: #5b1c71 !important;
+}
+.rdw-option-wrapper {
+  // padding: 14px !important;
+}
+.rdw-colorpicker-modal {
+  left: initial !important;
+  right: 5px;
+}
+.note-title-input {
+  margin-bottom: 15px;
+}
+.note-icon {
+  width: 90px;
+  height: 90px;
+  margin: 20px;
+  color: #fff;
+}
+.tag-list {
+  padding: 20px;
+  &__item {
+    font-weight: bold;
+    color: #ffffff;
   }
 }

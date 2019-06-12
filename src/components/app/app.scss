@@ -14,11 +14,12 @@
   background-color: #0e2459;
 }
 body {
-  min-height: 100vh;
-  background-image: linear-gradient(to right bottom, #081431, #002936, #041f31);
-
   color: white;
   font-family: "Exo2";
+}
+.finance-app-wrapper {
+  min-height: 100vh;
+  background-image: linear-gradient(to right bottom, #081431, #002936, #041f31);
 }
 .purpose-image {
   width: 40px;
@@ -114,4 +115,94 @@ body {
   padding-bottom: 5px;
   margin-bottom: 10px;
   background-color: rgba(#fff, 0.07);
+}
+.main-page {
+}
+.city-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../../components/app/image/New-York-City-Background.jpg);
+  background-size: cover;
+  background-position: center;
+  &:before {
+    content: "";
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(#fff, 0.9);
+  }
+}
+.application-nav {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 200px;
+    height: 200px;
+    background-color: #000000;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Arial";
+    &:not(:last-child) {
+      margin-right: 30px;
+    }
+  }
+}
+.app-icon {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+}
+
+.note-link {
+  background-image: linear-gradient(
+    to bottom,
+    #071a39,
+    #151f4b,
+    #29225b,
+    #412168,
+    #5c1c72
+  );
+}
+.finance-link {
+  background-image: linear-gradient(
+    to bottom,
+    #081532,
+    #021a34,
+    #001e35,
+    #002235,
+    #022534
+  );
+}
+.weather-link {
+  background-image: linear-gradient(
+    to bottom,
+    #4f50b0,
+    #1c70c7,
+    #008cd3,
+    #00a6d7,
+    #41bed7
+  );
+}
+.todo-link {
+  background-image: linear-gradient(
+    to bottom,
+    #6bc413,
+    #5bb80f,
+    #4cad0c,
+    #3ca108,
+    #2a9604
+  );
 }

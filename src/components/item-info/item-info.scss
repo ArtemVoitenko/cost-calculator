@@ -30,12 +30,24 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
+  &__purpose {
+    display: flex;
+    text-transform: uppercase;
+    align-items: center;
+  }
+  &__purpose-title {
+    display: block;
+    margin-right: 20px;
+  }
   &__sum {
     font-size: 25px;
     display: flex;
-    margin-left: 30px;
+    align-items: center;
   }
   &__val {
+    margin-left: 30px;
+    border-radius: 4px;
+    padding: 5px;
     &--expense {
       background-color: red;
     }

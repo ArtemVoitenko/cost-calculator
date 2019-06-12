@@ -14,6 +14,7 @@ import FinanceApp from "./components/finance-app";
 import { Login } from "./components/auth/Login";
 import { Register } from "./components/auth/Register";
 import WeatherApp from "./components/weather-app";
+import TodoApp from "./components/TodoApp";
 JavascriptTimeAgo.locale(en);
 class Root extends Component {
   componentDidMount() {
@@ -34,6 +35,7 @@ class Root extends Component {
             <Route path="/Register" component={Register} />
             <Route path="/Login" component={Login} />
             <Route path="/FinanceApp" component={FinanceApp} />
+            <Route path="/TodoApp" component={TodoApp} />
             <Route path="/App" component={App} />
             <Route path="/WeatherForecast" component={WeatherApp} />
           </Switch>

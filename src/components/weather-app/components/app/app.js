@@ -41,7 +41,7 @@ class App extends Component {
         return <div />;
       } else {
         return (
-          <div className="container-fluid d-flex">
+          <div className="container-fluid d-flex weather-app-wrapper">
             <div className="weather-main">
               <Input />
               <CurrentWeather />

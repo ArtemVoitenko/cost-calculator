@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import firebase from "../../firebase";
+import Icon from "../icon";
 export class Register extends Component {
   state = {
     username: "",
@@ -60,44 +61,61 @@ export class Register extends Component {
     const { email, password, passwordConfirm, username, errors } = this.state;
 
     return (
-      <div>
-        <form action="" onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            placeholder="username"
-            name="username"
-            onChange={this.handleChange}
-            value={username}
-          />
-          <input
-            type="email"
-            placeholder="email"
-            name="email"
-            onChange={this.handleChange}
-            value={email}
-          />
-          <input
-            type="password"
-            placeholder="********"
-            name="password"
-            onChange={this.handleChange}
-            value={password}
-          />
-          <input
-            type="password"
-            placeholder="********"
-            name="passwordConfirm"
-            onChange={this.handleChange}
-            value={passwordConfirm}
-          />
-          <button type="submit">Register</button>
-        </form>
-        {errors.lenght > 0
-          ? errors.map(error => {
-              return <p>{error.message}</p>;
-            })
-          : null}
-        <Link to="/login">Already have an account?</Link>
+      <div className="register">
+        <div className="auth__form">
+          <div className="auth__logo-wrapper">
+            <Icon icon="logo" iconClass="auth__logo" />
+          </div>
+          <p className="auth__title">register</p>
+          <form className="auth__fields" action="" onSubmit={this.handleSubmit}>
+            <input
+              className="auth__input"
+              type="text"
+              placeholder="username"
+              name="username"
+              onChange={this.handleChange}
+              value={username}
+            />
+            <input
+              className="auth__input"
+              type="email"
+              placeholder="email"
+              name="email"
+              onChange={this.handleChange}
+              value={email}
+            />
+
+            <input
+              className="auth__input"
+              type="password"
+              placeholder="password"
+              name="password"
+              onChange={this.handleChange}
+              value={password}
+            />
+            <input
+              className="auth__input"
+              type="password"
+              placeholder="confirm password"
+              name="passwordConfirm"
+              onChange={this.handleChange}
+              value={passwordConfirm}
+            />
+
+            <button class="auth__submit" type="submit">
+              Login
+            </button>
+          </form>
+          {errors.lenght > 0
+            ? errors.map(error => {
+                return <p>{error.message}</p>;
+              })
+            : null}
+          <Link className="auth__link" to="/login">
+            Already have an account?
+          </Link>
+        </div>
+        <div className="city-bg" />
       </div>
     );
   }

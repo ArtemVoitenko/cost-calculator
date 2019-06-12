@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import firebase from "../../firebase";
+import "./auth.scss";
+import Icon from "../icon";
 export class Login extends Component {
   state = {
     email: "",
@@ -38,30 +40,45 @@ export class Login extends Component {
     const { email, password, passwordConfirm, username, errors } = this.state;
 
     return (
-      <div>
-        <form action="" onSubmit={this.handleSubmit}>
-          <input
-            type="email"
-            placeholder="email"
-            name="email"
-            onChange={this.handleChange}
-            value={email}
-          />
-          <input
-            type="password"
-            placeholder="********"
-            name="password"
-            onChange={this.handleChange}
-            value={password}
-          />
-          <button type="submit">Sign In</button>
-        </form>
-        {errors.lenght > 0
-          ? errors.map(error => {
-              return <p>{error.message}</p>;
-            })
-          : null}
-        <Link to="/Register">Don't have an account?</Link>
+      <div className="login">
+        <div className="auth__form">
+          <div className="auth__logo-wrapper">
+            <Icon icon="logo" iconClass="auth__logo" />
+          </div>
+          <p className="auth__title">log in</p>
+          <form className="auth__fields" action="" onSubmit={this.handleSubmit}>
+            <input
+              className="auth__input"
+              type="email"
+              placeholder="email"
+              name="email"
+              onChange={this.handleChange}
+              value={email}
+            />
+
+            <input
+              className="auth__input"
+              type="password"
+              placeholder="********"
+              name="password"
+              onChange={this.handleChange}
+              value={password}
+            />
+
+            <button class="auth__submit" type="submit">
+              Login
+            </button>
+          </form>
+          {errors.lenght > 0
+            ? errors.map(error => {
+                return <p>{error.message}</p>;
+              })
+            : null}
+          <Link className="auth__link" to="/Register">
+            Don't have an account?
+          </Link>
+        </div>
+        <div className="city-bg" />
       </div>
     );
   }

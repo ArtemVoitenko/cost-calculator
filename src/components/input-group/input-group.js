@@ -269,18 +269,18 @@ class InputGroup extends Component {
             purpose={this.state.actionPurpose}
           />
         </div>
-        <div className="input-panel">
-          <div className="input input--textarea description-field">
-            <textarea
-              placeholder="Description"
-              className="input__field"
-              value={actionDescription}
-              onChange={this.onDescriptionInput}
-              id="description"
-            />
-          </div>
 
-          {imageList()}
+        <div className="input input--textarea description-field">
+          <textarea
+            placeholder="Description"
+            className="input__field"
+            value={actionDescription}
+            onChange={this.onDescriptionInput}
+            id="description"
+          />
+        </div>
+        {imageList()}
+        <div className="input-panel">
           <button
             className="btn-show-calendar"
             onClick={this.showCalendar}

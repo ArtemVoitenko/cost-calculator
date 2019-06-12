@@ -147,25 +147,32 @@ export default class NoteCreator extends Component {
           <div className="note-creator__left">
             <input
               type="text"
-              className="notes-input"
+              placeholder="Note title"
+              className="notes-input note-title-input"
               onChange={this.onTitleInput}
               value={note_title}
             />
-            <DictateCheckbox
+            {/* <DictateCheckbox
               onProgress={this.showDictationProgress}
               onDictate={this.getRecognition}
               lang="en-US"
             >
               start/stop
-            </DictateCheckbox>
+            </DictateCheckbox> */}
             <textarea
-              className="notes-input notes-input--textarea"
+              placeholder="Short note description"
+              className="notes-input notes-input--textarea note-title-input"
               onChange={this.onDescriptionInput}
               value={note_description}
             />
             <NotesPalette
               onColorChanged={this.onColorChanged}
               activeColor={note_color}
+            />
+            <input
+              placeholder="Tag name"
+              className="tag notes-input"
+              type="text"
             />
           </div>
           <div className="note-creator__right">
