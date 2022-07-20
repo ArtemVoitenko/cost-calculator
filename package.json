@@ -30,7 +30,7 @@
     "react-scripts": "^2.1.5",
     "react-time-ago": "^5.0.4",
     "redux": "^4.0.1",
-    "terser": "^3.14.1",
+    "terser": "^4.8.1",
     "watson-html5-speech-recognition": "^0.6.6"
   },
   "scripts": {
